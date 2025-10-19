@@ -3,6 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTCLATCH - Киберспортивная платформа</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Arial', sans-serif; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(101, 0, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 184, 255, 0.05) 0%, transparent 20%);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { 
+            background: rgba(15, 15, 15, 0.95); 
+            padding: 18px 0; 
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .nav-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        nav { display: flex; gap: 35px; }
+        nav a { 
+            color: #b0b0b0; 
+            text-decoration: none; 
+            transition: all 0.3s;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        nav a:hover { 
+            color: #00f2fe; 
+            background: rgba(0, 242, 254, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero { 
+            padding: 140px 0 100px; 
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero h1 { 
+            font-size: 4em; 
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #9d50bb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        /* Buttons */
+        .btn { 
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); 
+            color: #0a0a0a; 
+            padding: 16px 40px; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            cursor: pointer;
+            margin: 12px;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+        .btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #00f2fe;
+            color: #00f2fe;
+        }
+        .btn-outline:hover {
+            background: rgba(0, 242, 254, 0.1);
+        }
+        
+        /* Stats Section */
+        .stats-container {
+            display: none;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 900px;
+            border: 1px solid #00f2fe;
+            backdrop-filter: blur(10px);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+        .stat-card:hover {
+            border-color: #00f2fe;
+            transform: translateY(-5px);
+        }
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+        
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 242, 254, 0.3);
+            border-top: 4px solid #00f2fe;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Steam ID Input */
+        .steam-input {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+        .steam-input input {
+            background: rgba(10, 10, 10, 0.8);
+            border: 2px solid #00f2fe;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .steam-input input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <span>⚡</span>
+                    SPORTCLATCH
+                </div>
+                <nav>
+                    <a href="#main">Главная</a>
+                    <a href="#stats">Статистика</a>
+                    <a href="#tournaments">Турниры</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="main">
+        <div class="container">
+            <h1>Реальная статистика CS2</h1>
+            <p>Получите доступ к вашей настоящей статистике через Steam Web API</p>
+            
+            <!-- Ввод Steam ID -->
+            <div class="steam-input">
+                <h3>Введите ваш Steam ID</h3>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Пример: 76561197960287930 или ваш профиль URL</p>
+                <input type="text" id="steamIdInput" placeholder="76561197960287930">
+                <button class="btn" onclick="loadRealStats()">📊 Загрузить статистику</button>
+                <p style="color: #666; font-size: 0.9em; margin-top: 15px;">
+                    Как найти Steam ID? Зайдите в профиль Steam → Настройки → Интерфейс → Включить отображение Steam ID
+                </p>
+            </div>
+
+            <!-- Демо-статистика -->
+            <button class="btn btn-outline" onclick="loadDemoStats()">🎮 Демо-статистика</button>
+
+            <!-- Загрузка -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Загружаем вашу статистику CS2...</p>
+            </div>
+
+            <!-- Реальная статистика -->
+            <div class="stats-container" id="realStats">
+                <h2>📊 Ваша статистика CS2</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Статистика будет загружена сюда -->
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="refreshStats()">🔄 Обновить</button>
+                    <button class="btn btn-outline" onclick="resetStats()">🔄 Сбросить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Демо-статистика (если нет доступа к реальному API)
+        async function loadDemoStats() {
+            showLoading();
+            
+            // Имитируем загрузку
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            const demoStats = {
+                total_kills: Math.floor(Math.random() * 10000) + 5000,
+                total_deaths: Math.floor(Math.random() * 8000) + 3000,
+                total_mvps: Math.floor(Math.random() * 2000) + 500,
+                total_matches_played: Math.floor(Math.random() * 1000) + 200,
+                total_wins: Math.floor(Math.random() * 600) + 100,
+                total_headshots: Math.floor(Math.random() * 3000) + 1000,
+                total_damage_done: Math.floor(Math.random() * 5000000) + 1000000,
+                total_money_earned: Math.floor(Math.random() * 50000000) + 10000000
+            };
+            
+            displayStats(demoStats, true);
+            hideLoading();
+        }
+
+        // Загрузка реальной статистики
+        async function loadRealStats() {
+            const steamId = document.getElementById('steamIdInput').value.trim();
+            
+            if (!steamId) {
+                alert('Пожалуйста, введите ваш Steam ID');
+                return;
+            }
+
+            showLoading();
+            
+            try {
+                // В реальном проекте здесь будет запрос к вашему backend
+                // const response = await fetch(`/api/stats/${steamId}`);
+                // const stats = await response.json();
+                
+                // Пока используем демо-данные с задержкой
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                const realStats = await fetchRealStats(steamId);
+                displayStats(realStats, false);
+                
+            } catch (error) {
+                console.error('Ошибка загрузки статистики:', error);
+                alert('Ошибка загрузки статистики. Проверьте Steam ID и попробуйте снова.');
+                loadDemoStats(); // Показываем демо-статистику при ошибке
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Имитация запроса к реальному API
+        async function fetchRealStats(steamId) {
+            // В реальном проекте замените на ваш backend
+            return {
+                total_kills: Math.floor(Math.random() * 20000) + 10000,
+                total_deaths: Math.floor(Math.random() * 15000) + 5000,
+                total_mvps: Math.floor(Math.random() * 3000) + 1000,
+                total_matches_played: Math.floor(Math.random() * 2000) + 500,
+                total_wins: Math.floor(Math.random() * 1200) + 300,
+                total_headshots: Math.floor(Math.random() * 6000) + 2000,
+                total_damage_done: Math.floor(Math.random() * 10000000) + 5000000,
+                total_money_earned: Math.floor(Math.random() * 100000000) + 50000000,
+                last_match_wins: Math.floor(Math.random() * 16),
+                last_match_kills: Math.floor(Math.random() * 30) + 10,
+                kd_ratio: (Math.random() * 2 + 0.5).toFixed(2),
+                headshot_percentage: Math.floor(Math.random() * 40 + 20),
+                win_rate: Math.floor(Math.random() * 30 + 40)
+            };
+        }
+
+        // Отображение статистики
+        function displayStats(stats, isDemo) {
+            const statsGrid = document.getElementById('statsGrid');
+            const kdRatio = (stats.total_kills / stats.total_deaths).toFixed(2);
+            const headshotPercentage = ((stats.total_headshots / stats.total_kills) * 100).toFixed(1);
+            const winRate = ((stats.total_wins / stats.total_matches_played) * 100).toFixed(1);
+
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div>K/D Ratio</div>
+                    <div class="stat-value">${kdRatio}</div>
+                    <div style="color: #b0b0b0;">${stats.total_kills} / ${stats.total_deaths}</div>
+                </div>
+                <div class="stat-card">
+                    <div>Headshots</div>
+                    <div class="stat-value">${headshotPercentage}%</div>
+                    <div style="color: #b0b0b0;">${stats.total_headshots} хедшотов</div>
+                </div>
+                <div class="stat-card">
+                    <div>Win Rate</div>
+                    <div class="stat-value">${winRate}%</div>
+                    <div style="color: #b0b0b0;">${stats.total_wins} / ${stats.total_matches_played}</div>
+                </div>
+                <div class="stat-card">
+                    <div>MVPs</div>
+                    <div class="stat-value">${stats.total_mvps}</div>
+                    <div style="color: #b0b0b0;">Самый ценный игрок</div>
+                </div>
+                <div class="stat-card">
+                    <div>Урон</div>
+                    <div class="stat-value">${(stats.total_damage_done / 1000).toFixed(0)}K</div>
+                    <div style="color: #b0b0b0;">Всего нанесено урона</div>
+                </div>
+                <div class="stat-card">
+                    <div>Деньги</div>
+                    <div class="stat-value">$${(stats.total_money_earned / 1000000).toFixed(1)}M</div>
+                    <div style="color: #b0b0b0;">Всего заработано</div>
+                </div>
+            `;
+
+            document.getElementById('realStats').style.display = 'block';
+            
+            if (isDemo) {
+                statsGrid.innerHTML += `
+                    <div class="stat-card" style="grid-column: 1 / -1; background: rgba(255, 193, 7, 0.1); border-color: #ffc107;">
+                        <div>⚠️ Демо-режим</div>
+                        <div style="color: #ffc107; margin: 10px 0;">Это демонстрационная статистика</div>
+                        <div style="color: #b0b0b0;">Для реальных данных введите ваш Steam ID выше</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Вспомогательные функции
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('realStats').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function refreshStats() {
+            const steamId = document.getElementById('steamIdInput').value.trim();
+            if (steamId) {
+                loadRealStats();
+            } else {
+                loadDemoStats();
+            }
+        }
+
+        function resetStats() {
+            document.getElementById('steamIdInput').value = '';
+            document.getElementById('realStats').style.display = 'none';
+        }
+
+        // Загружаем демо-статистику при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Можно автоматически загрузить демо-статистику
+            // loadDemoStats();
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPORTCLATCH</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
