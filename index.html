@@ -99,6 +99,22 @@
             border-radius: 2px;
         }
 
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Main Content */
         .main-content {
             margin-top: 80px;
@@ -243,6 +259,11 @@
         .btn-secondary:hover {
             background: rgba(99, 102, 241, 0.2);
             transform: translateY(-2px);
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
         }
 
         /* Stats */
@@ -421,6 +442,164 @@
             border-radius: 8px;
         }
 
+        /* Player Profiles */
+        .profile-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+        }
+
+        .profile-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .achievement-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card.unlocked {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-progress {
+            background: var(--card);
+            height: 6px;
+            border-radius: 3px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .achievement-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        /* Training Modes */
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .training-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .training-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1rem 0;
+        }
+
+        /* Rating System */
+        .rating-leaderboard {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .leaderboard-rank {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            min-width: 30px;
+        }
+
+        /* Premium Subscription */
+        .premium-banner {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .premium-feature {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #f59e0b;
+        }
+
+        /* Theme Styles */
+        body.light-theme {
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --card: #f1f5f9;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
         /* Footer */
         .footer {
             background: var(--surface);
@@ -510,12 +689,15 @@
             <div class="nav-links">
                 <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
                 <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
-                <a href="#" class="nav-link" onclick="showSection('skins')">3D Скины</a>
-                <a href="#" class="nav-link" onclick="showSection('teams')">Команды</a>
+                <a href="#" class="nav-link" onclick="showSection('skins')">Скины</a>
+                <a href="#" class="nav-link" onclick="showSection('profiles')">Профили</a>
+                <a href="#" class="nav-link" onclick="showSection('training')">Тренировки</a>
+                <a href="#" class="nav-link" onclick="showSection('rating')">Рейтинг</a>
                 <button class="btn btn-primary" onclick="steamLogin()">
                     <span>🎮</span>
                     Войти через Steam
                 </button>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
             </div>
         </div>
     </nav>
@@ -536,6 +718,10 @@
                         <span>🔫</span>
                         3D Просмотр скинов
                     </button>
+                    <button class="btn btn-premium" onclick="showPremiumModal()">
+                        <span>⭐</span>
+                        Премиум подписка
+                    </button>
                 </div>
             </div>
 
@@ -554,6 +740,14 @@
                     <div class="card-icon">🎨</div>
                     <h3>3D Просмотр скинов</h3>
                     <p>Интерактивный просмотр скинов CS2 с разным освещением и углами обзора</p>
+                </div>
+            </div>
+
+            <!-- Achievements Preview -->
+            <div style="margin-top: 3rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">🏆 Ваши достижения</h2>
+                <div class="achievements-grid" id="homeAchievements">
+                    <!-- Achievements will be loaded here -->
                 </div>
             </div>
         </section>
@@ -583,7 +777,7 @@
             <div id="statsResults" style="margin-top: 2rem;"></div>
         </section>
 
-        <!-- 3D Skins Section -->
+        <!-- Skins Section -->
         <section id="skins" class="section">
             <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🎨 3D Просмотр скинов</h2>
             
@@ -657,26 +851,168 @@
             </div>
         </section>
 
-        <!-- Teams Section -->
-        <section id="teams" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">👥 Поиск команды</h2>
+        <!-- Profiles Section -->
+        <section id="profiles" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">👤 Профили игроков</h2>
             
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🔍</div>
-                    <h3>Найти команду</h3>
-                    <p>Ищете тиммейтов для участия в турнирах? Наша система подберет идеальных партнеров</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Найти команду</button>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="https://via.placeholder.com/80" alt="Аватар" class="profile-avatar">
+                    <div>
+                        <h3>ProPlayer_CS2</h3>
+                        <p style="color: var(--text-light);">Уровень 45 • Global Elite</p>
+                        <div class="profile-badges">
+                            <span class="badge">🏆 Чемпион</span>
+                            <span class="badge">⚡ Профи</span>
+                            <span class="badge">🎯 Снайпер</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">➕</div>
-                    <h3>Создать команду</h3>
-                    <p>Соберите свою команду мечты и начните покорять киберспортивную сцену</p>
-                    <button class="btn btn-secondary" style="margin-top: 1rem;">Создать команду</button>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">1.45</div>
+                        <div class="stat-label">K/D Ratio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Побед</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">42%</div>
+                        <div class="stat-label">Хедшоты</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2,845</div>
+                        <div class="stat-label">MVP</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem;">🏆 Достижения игрока</h3>
+            <div class="achievements-grid" id="profileAchievements">
+                <!-- Achievements will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Training Section -->
+        <section id="training" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🎯 Тренировочные режимы</h2>
+            
+            <div class="training-grid">
+                <div class="training-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Тренировка аима</h3>
+                    <p>Улучшите свою точность и реакцию</p>
+                    <div class="training-stats">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">85%</div>
+                            <div style="color: var(--text-light); font-size: 0.8rem;">Точность</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">0.24s</div>
+                            <div style="color: var(--text-light); font-size: 0.8rem;">Реакция</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Режим прицеливания</h3>
+                    <p>Оттачивайте флики и трекинг</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-icon">💥</div>
+                    <h3>Гренадная карта</h3>
+                    <p>Изучайте позиции для смоков и флешек</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h3>📈 Ваш прогресс в тренировках</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">Тренировок</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">+15%</div>
+                        <div class="stat-label">Улучшение</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7д</div>
+                        <div class="stat-label">Активность</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rating Section -->
+        <section id="rating" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🏅 Рейтинг игроков</h2>
+            
+            <div class="rating-leaderboard">
+                <h3 style="margin-bottom: 1.5rem;">Топ-10 игроков SPORTCLATCH</h3>
+                <div id="leaderboardList">
+                    <!-- Leaderboard will be loaded here -->
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h3>📊 Ваше место в рейтинге</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">#47</div>
+                        <div class="stat-label">Глобальный рейтинг</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1,845</div>
+                        <div class="stat-label">ELO очки</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">+125</div>
+                        <div class="stat-label">За неделю</div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Premium Modal -->
+    <div id="premiumModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: var(--surface); padding: 3rem; border-radius: 20px; max-width: 500px; text-align: center;">
+            <h2 style="margin-bottom: 1rem;">⭐ Премиум подписка</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">Получите эксклюзивные возможности и приоритетный доступ</p>
+            
+            <div class="premium-features">
+                <div class="premium-feature">
+                    <div style="font-size: 2rem;">📊</div>
+                    <h4>Расширенная статистика</h4>
+                </div>
+                <div class="premium-feature">
+                    <div style="font-size: 2rem;">🎨</div>
+                    <h4>Эксклюзивные темы</h4>
+                </div>
+                <div class="premium-feature">
+                    <div style="font-size: 2rem;">⚡</div>
+                    <h4>Приоритет в турнирах</h4>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #f59e0b;">$9.99/мес</div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-premium" onclick="subscribePremium()">Оформить подписку</button>
+                <button class="btn btn-secondary" onclick="closePremiumModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -690,16 +1026,18 @@
                 <ul class="footer-links">
                     <li><a href="#" onclick="showSection('home')">Главная</a></li>
                     <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
-                    <li><a href="#" onclick="showSection('skins')">3D Скины</a></li>
-                    <li><a href="#" onclick="showSection('teams')">Команды</a></li>
+                    <li><a href="#" onclick="showSection('skins')">Скины</a></li>
+                    <li><a href="#" onclick="showSection('profiles')">Профили</a></li>
+                    <li><a href="#" onclick="showSection('training')">Тренировки</a></li>
+                    <li><a href="#" onclick="showSection('rating')">Рейтинг</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Поддержка</h3>
                 <ul class="footer-links">
+                    <li><a href="#" onclick="showDiscordBotInfo()">Discord бот</a></li>
                     <li><a href="#">Помощь</a></li>
                     <li><a href="#">Контакты</a></li>
-                    <li><a href="#">Discord</a></li>
                     <li><a href="#">Документация</a></li>
                 </ul>
             </div>
@@ -724,6 +1062,13 @@
             
             // Add active class to clicked nav link
             event.target.classList.add('active');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = document.body.classList.contains('light-theme') ? '🌙' : '🌓';
         }
 
         // Stats functionality
@@ -911,14 +1256,85 @@
             displayArea.style.background = backgrounds[lightingType];
         }
 
+        // Achievements System
+        const achievements = [
+            { id: 1, name: 'Первая кровь', description: 'Выиграть первый матч', icon: '🩸', progress: 100, max: 100, unlocked: true },
+            { id: 2, name: 'Снайпер', description: '1000 хедшотов', icon: '🎯', progress: 750, max: 1000, unlocked: false },
+            { id: 3, name: 'Богач', description: 'Заработать $1,000,000', icon: '💰', progress: 450000, max: 1000000, unlocked: false },
+            { id: 4, name: 'Неудержимый', description: '10 побед подряд', icon: '⚡', progress: 7, max: 10, unlocked: false },
+            { id: 5, name: 'Ветеран', description: '500 матчей', icon: '🎖️', progress: 324, max: 500, unlocked: false }
+        ];
+
+        function loadAchievements(containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = achievements.map(achievement => `
+                <div class="achievement-card ${achievement.unlocked ? 'unlocked' : ''}">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <h4>${achievement.name}</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin: 0.5rem 0;">${achievement.description}</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-bar" style="width: ${(achievement.progress / achievement.max) * 100}%"></div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: var(--text-light);">
+                        ${achievement.progress}/${achievement.max}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Rating System
+        const leaderboard = [
+            { rank: 1, name: 'ProPlayer_CS2', elo: 2450, wins: 1247 },
+            { rank: 2, name: 'Ace_Shooter', elo: 2380, wins: 1156 },
+            { rank: 3, name: 'Headshot_King', elo: 2310, wins: 1098 },
+            { rank: 4, name: 'Tactical_Genius', elo: 2250, wins: 1034 },
+            { rank: 5, name: 'Clutch_Master', elo: 2190, wins: 987 }
+        ];
+
+        function loadLeaderboard() {
+            const container = document.getElementById('leaderboardList');
+            container.innerHTML = leaderboard.map(player => `
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">#${player.rank}</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600;">${player.name}</div>
+                        <div style="color: var(--text-light); font-size: 0.8rem;">${player.wins} побед</div>
+                    </div>
+                    <div style="color: var(--primary); font-weight: 700;">${player.elo} ELO</div>
+                </div>
+            `).join('');
+        }
+
+        // Premium Subscription
+        function showPremiumModal() {
+            document.getElementById('premiumModal').style.display = 'flex';
+        }
+
+        function closePremiumModal() {
+            document.getElementById('premiumModal').style.display = 'none';
+        }
+
+        function subscribePremium() {
+            alert('🎉 Спасибо за оформление премиум подписки! В реальной версии здесь будет платежная система.');
+            closePremiumModal();
+        }
+
+        // Discord Bot Info
+        function showDiscordBotInfo() {
+            alert('🤖 Discord бот SPORTCLATCH\n\nФункции:\n• Уведомления о матчах\n• Статистика в реальном времени\n• Быстрая регистрация на турниры\n\nСсылка для добавления: discord.gg/sportclatch');
+        }
+
         function steamLogin() {
             alert('🚀 В реальной версии здесь будет переход на авторизацию через Steam');
         }
 
-        // Initialize 3D viewer with default weapon
+        // Initialize all systems
         document.addEventListener('DOMContentLoaded', function() {
             selectWeapon('ak47');
-            console.log('SPORTCLATCH 3D Skin Viewer loaded!');
+            loadAchievements('homeAchievements');
+            loadAchievements('profileAchievements');
+            loadLeaderboard();
+            console.log('SPORTCLATCH loaded successfully!');
         });
     </script>
 </body>
