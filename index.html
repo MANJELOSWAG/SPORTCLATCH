@@ -57,14 +57,14 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
@@ -99,20 +99,84 @@
             border-radius: 2px;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Menu Button */
+        .menu-btn {
             background: none;
             border: 1px solid var(--primary);
             color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.5rem;
+            border-radius: 6px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-line {
+            width: 18px;
+            height: 2px;
+            background: currentColor;
+            border-radius: 1px;
             transition: all 0.3s ease;
         }
 
-        .theme-toggle:hover {
-            background: var(--primary);
-            color: white;
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 2rem;
+            background: var(--surface);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1001;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(99, 102, 241, 0.2);
+            margin: 0.5rem 0;
         }
 
         /* Main Content */
@@ -325,123 +389,6 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
-        /* 3D Skin Viewer */
-        .skin-viewer-container {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .skin-viewer-header {
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .skin-controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .skin-control-btn {
-            background: var(--card);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            color: var(--text);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .skin-control-btn:hover, .skin-control-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .skin-display-area {
-            position: relative;
-            background: linear-gradient(135deg, #1e1b4b, #312e81);
-            border-radius: 16px;
-            height: 400px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .skin-3d-model {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .weapon-model {
-            font-size: 8rem;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-            cursor: grab;
-        }
-
-        .weapon-model:active {
-            cursor: grabbing;
-        }
-
-        .lighting-controls {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .lighting-btn {
-            background: var(--card);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lighting-btn:hover, .lighting-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .skin-info {
-            background: var(--card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-
-        .skin-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 0.5rem 0;
-        }
-
-        .skin-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .skin-stat {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-        }
-
         /* Player Profiles */
         .profile-card {
             background: var(--surface);
@@ -519,28 +466,6 @@
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
-        }
-
-        /* Training Modes */
-        .training-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .training-card {
-            background: var(--surface);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-        }
-
-        .training-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 1rem 0;
         }
 
         /* Rating System */
@@ -667,14 +592,6 @@
                 width: 100%;
                 justify-content: center;
             }
-
-            .skin-controls {
-                justify-content: center;
-            }
-
-            .weapon-model {
-                font-size: 5rem;
-            }
         }
     </style>
 </head>
@@ -686,18 +603,41 @@
                 <span>⚡</span>
                 SPORTCLATCH
             </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
-                <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
-                <a href="#" class="nav-link" onclick="showSection('skins')">Скины</a>
-                <a href="#" class="nav-link" onclick="showSection('profiles')">Профили</a>
-                <a href="#" class="nav-link" onclick="showSection('training')">Тренировки</a>
-                <a href="#" class="nav-link" onclick="showSection('rating')">Рейтинг</a>
+            <div class="header-actions">
                 <button class="btn btn-primary" onclick="steamLogin()">
-                    <span>🎮</span>
                     Войти через Steam
                 </button>
-                <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+                <div class="menu-container">
+                    <button class="menu-btn" onclick="toggleMenu()">
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <div class="dropdown-item" onclick="toggleTheme()">
+                            <span>🌓</span>
+                            Сменить тему
+                        </div>
+                        <div class="dropdown-item" onclick="showPremiumModal()">
+                            <span>⭐</span>
+                            Премиум подписка
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" onclick="showDiscordBotInfo()">
+                            <span>🤖</span>
+                            Discord бот
+                        </div>
+                        <div class="dropdown-item" onclick="showSettings()">
+                            <span>⚙️</span>
+                            Настройки
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" onclick="showHelp()">
+                            <span>❓</span>
+                            Помощь
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -708,18 +648,15 @@
         <section id="home" class="section active">
             <div class="hero">
                 <h1>Стань легендой киберспорта</h1>
-                <p>Продвинутая платформа для игроков CS2. Статистика, 3D скины, команды и многое другое в одном месте.</p>
+                <p>Продвинутая платформа для игроков CS2. Статистика, профили, рейтинг и многое другое в одном месте.</p>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="showSection('stats')">
-                        <span>📊</span>
                         Моя статистика
                     </button>
-                    <button class="btn btn-secondary" onclick="showSection('skins')">
-                        <span>🔫</span>
-                        3D Просмотр скинов
+                    <button class="btn btn-secondary" onclick="showSection('profiles')">
+                        Профили
                     </button>
                     <button class="btn btn-premium" onclick="showPremiumModal()">
-                        <span>⭐</span>
                         Премиум подписка
                     </button>
                 </div>
@@ -733,19 +670,19 @@
                 </div>
                 <div class="card">
                     <div class="card-icon">👥</div>
-                    <h3>Умный поиск команды</h3>
-                    <p>Найдите идеальных тиммейтов по рейтингу, стилю игры и времени активности</p>
+                    <h3>Профили игроков</h3>
+                    <p>Просматривайте профили других игроков, их достижения и статистику</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🎨</div>
-                    <h3>3D Просмотр скинов</h3>
-                    <p>Интерактивный просмотр скинов CS2 с разным освещением и углами обзора</p>
+                    <div class="card-icon">🏅</div>
+                    <h3>Рейтинговая система</h3>
+                    <p>Соревнуйтесь с другими игроками и поднимайтесь в рейтинге</p>
                 </div>
             </div>
 
             <!-- Achievements Preview -->
             <div style="margin-top: 3rem;">
-                <h2 style="text-align: center; margin-bottom: 2rem;">🏆 Ваши достижения</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem;">Ваши достижения</h2>
                 <div class="achievements-grid" id="homeAchievements">
                     <!-- Achievements will be loaded here -->
                 </div>
@@ -754,7 +691,7 @@
 
         <!-- Stats Section -->
         <section id="stats" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">📊 Статистика CS2</h2>
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Статистика CS2</h2>
             
             <div class="card">
                 <h3 style="margin-bottom: 1.5rem;">Получить статистику</h3>
@@ -764,11 +701,9 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="loadRealStats()">
-                        <span>🚀</span>
                         Загрузить статистику
                     </button>
                     <button class="btn btn-secondary" onclick="loadDemoStats()">
-                        <span>🎮</span>
                         Демо-режим
                     </button>
                 </div>
@@ -777,83 +712,9 @@
             <div id="statsResults" style="margin-top: 2rem;"></div>
         </section>
 
-        <!-- Skins Section -->
-        <section id="skins" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🎨 3D Просмотр скинов</h2>
-            
-            <div class="skin-viewer-container">
-                <div class="skin-viewer-header">
-                    <h3>Интерактивный просмотр скинов CS2</h3>
-                </div>
-
-                <div class="skin-controls">
-                    <button class="skin-control-btn active" onclick="selectWeapon('ak47')">AK-47</button>
-                    <button class="skin-control-btn" onclick="selectWeapon('awp')">AWP</button>
-                    <button class="skin-control-btn" onclick="selectWeapon('knife')">Нож</button>
-                    <button class="skin-control-btn" onclick="selectWeapon('gloves')">Перчатки</button>
-                </div>
-
-                <div class="skin-display-area">
-                    <div class="skin-3d-model" id="skinModel" onmousedown="startRotation(event)">
-                        <div class="weapon-model" id="weaponModel">🔫</div>
-                    </div>
-                </div>
-
-                <div class="lighting-controls">
-                    <button class="lighting-btn active" onclick="changeLighting('default')">🔆 Стандартное</button>
-                    <button class="lighting-btn" onclick="changeLighting('dark')">🌙 Тёмное</button>
-                    <button class="lighting-btn" onclick="changeLighting('studio')">💡 Студия</button>
-                    <button class="lighting-btn" onclick="changeLighting('sunset')">🌅 Закат</button>
-                </div>
-
-                <div class="skin-info">
-                    <h4 id="skinName">AK-47 | Красная линия</h4>
-                    <div class="skin-price" id="skinPrice">$245.50</div>
-                    <p id="skinDescription">Легендарный скин с уникальным дизайном и редкой расцветкой</p>
-                    
-                    <div class="skin-stats">
-                        <div class="skin-stat">
-                            <div style="font-weight: 600;">Редкость</div>
-                            <div style="color: var(--secondary);" id="skinRarity">Запрещённый</div>
-                        </div>
-                        <div class="skin-stat">
-                            <div style="font-weight: 600;">Качество</div>
-                            <div style="color: var(--accent);" id="skinQuality">Прямо с завода</div>
-                        </div>
-                        <div class="skin-stat">
-                            <div style="font-weight: 600;">Год</div>
-                            <div>2014</div>
-                        </div>
-                        <div class="skin-stat">
-                            <div style="font-weight: 600;">Коллекция</div>
-                            <div>Train</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🔄</div>
-                    <h3>Вращение 360°</h3>
-                    <p>Кликните и перетащите для вращения оружия. Полный контроль над углом обзора</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">💡</div>
-                    <h3>Разное освещение</h3>
-                    <p>Тестируйте скины при разном освещении чтобы увидеть все детали и оттенки</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Детальная информация</h3>
-                    <p>Полная информация о скине: цена, редкость, качество и история</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">👤 Профили игроков</h2>
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Профили игроков</h2>
             
             <div class="profile-card">
                 <div class="profile-header">
@@ -862,9 +723,9 @@
                         <h3>ProPlayer_CS2</h3>
                         <p style="color: var(--text-light);">Уровень 45 • Global Elite</p>
                         <div class="profile-badges">
-                            <span class="badge">🏆 Чемпион</span>
-                            <span class="badge">⚡ Профи</span>
-                            <span class="badge">🎯 Снайпер</span>
+                            <span class="badge">Чемпион</span>
+                            <span class="badge">Профи</span>
+                            <span class="badge">Снайпер</span>
                         </div>
                     </div>
                 </div>
@@ -889,71 +750,15 @@
                 </div>
             </div>
 
-            <h3 style="margin: 2rem 0 1rem;">🏆 Достижения игрока</h3>
+            <h3 style="margin: 2rem 0 1rem;">Достижения игрока</h3>
             <div class="achievements-grid" id="profileAchievements">
                 <!-- Achievements will be loaded here -->
             </div>
         </section>
 
-        <!-- Training Section -->
-        <section id="training" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🎯 Тренировочные режимы</h2>
-            
-            <div class="training-grid">
-                <div class="training-card">
-                    <div class="card-icon">🎯</div>
-                    <h3>Тренировка аима</h3>
-                    <p>Улучшите свою точность и реакцию</p>
-                    <div class="training-stats">
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">85%</div>
-                            <div style="color: var(--text-light); font-size: 0.8rem;">Точность</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">0.24s</div>
-                            <div style="color: var(--text-light); font-size: 0.8rem;">Реакция</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
-                </div>
-
-                <div class="training-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>Режим прицеливания</h3>
-                    <p>Оттачивайте флики и трекинг</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
-                </div>
-
-                <div class="training-card">
-                    <div class="card-icon">💥</div>
-                    <h3>Гренадная карта</h3>
-                    <p>Изучайте позиции для смоков и флешек</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Начать тренировку</button>
-                </div>
-            </div>
-
-            <div class="card" style="margin-top: 2rem;">
-                <h3>📈 Ваш прогресс в тренировках</h3>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Тренировок</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">+15%</div>
-                        <div class="stat-label">Улучшение</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">7д</div>
-                        <div class="stat-label">Активность</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Rating Section -->
         <section id="rating" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🏅 Рейтинг игроков</h2>
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Рейтинг игроков</h2>
             
             <div class="rating-leaderboard">
                 <h3 style="margin-bottom: 1.5rem;">Топ-10 игроков SPORTCLATCH</h3>
@@ -963,7 +768,7 @@
             </div>
 
             <div class="card" style="margin-top: 2rem;">
-                <h3>📊 Ваше место в рейтинге</h3>
+                <h3>Ваше место в рейтинге</h3>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value">#47</div>
@@ -985,7 +790,7 @@
     <!-- Premium Modal -->
     <div id="premiumModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
         <div style="background: var(--surface); padding: 3rem; border-radius: 20px; max-width: 500px; text-align: center;">
-            <h2 style="margin-bottom: 1rem;">⭐ Премиум подписка</h2>
+            <h2 style="margin-bottom: 1rem;">Премиум подписка</h2>
             <p style="color: var(--text-light); margin-bottom: 2rem;">Получите эксклюзивные возможности и приоритетный доступ</p>
             
             <div class="premium-features">
@@ -1026,9 +831,7 @@
                 <ul class="footer-links">
                     <li><a href="#" onclick="showSection('home')">Главная</a></li>
                     <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
-                    <li><a href="#" onclick="showSection('skins')">Скины</a></li>
                     <li><a href="#" onclick="showSection('profiles')">Профили</a></li>
-                    <li><a href="#" onclick="showSection('training')">Тренировки</a></li>
                     <li><a href="#" onclick="showSection('rating')">Рейтинг</a></li>
                 </ul>
             </div>
@@ -1052,23 +855,35 @@
                 section.classList.remove('active');
             });
             
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
             // Show target section
             document.getElementById(sectionId).classList.add('active');
-            
-            // Add active class to clicked nav link
-            event.target.classList.add('active');
+            closeMenu();
         }
+
+        // Dropdown Menu
+        function toggleMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.classList.toggle('show');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.classList.remove('show');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('dropdownMenu');
+            const menuBtn = document.querySelector('.menu-btn');
+            if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+                closeMenu();
+            }
+        });
 
         // Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
-            const themeBtn = document.querySelector('.theme-toggle');
-            themeBtn.textContent = document.body.classList.contains('light-theme') ? '🌙' : '🌓';
+            closeMenu();
         }
 
         // Stats functionality
@@ -1108,7 +923,7 @@
             
             document.getElementById('statsResults').innerHTML = `
                 <div class="card">
-                    <h3>${isDemo ? '🎮 Демо-статистика' : '📊 Ваша статистика'}</h3>
+                    <h3>${isDemo ? 'Демо-статистика' : 'Ваша статистика'}</h3>
                     ${isDemo ? '<p style="color: var(--warning); margin-bottom: 1rem;">Это демонстрационные данные. Введите реальный Steam ID для получения настоящей статистики.</p>' : ''}
                     
                     <div class="stats-grid">
@@ -1146,114 +961,6 @@
                     </div>
                 </div>
             `;
-        }
-
-        // 3D Skin Viewer functionality
-        let isRotating = false;
-        let startX = 0;
-        let currentRotation = 0;
-
-        const weapons = {
-            ak47: {
-                emoji: '🔫',
-                name: 'AK-47 | Красная линия',
-                price: '$245.50',
-                rarity: 'Запрещённый',
-                quality: 'Прямо с завода',
-                description: 'Легендарный скин с уникальным дизайном и редкой расцветкой'
-            },
-            awp: {
-                emoji: '🎯',
-                name: 'AWP | Дракон Лор',
-                price: '$1,845.00',
-                rarity: 'Запрещённый',
-                quality: 'Немного поношенное',
-                description: 'Эксклюзивный скин с детализированным изображением дракона'
-            },
-            knife: {
-                emoji: '🔪',
-                name: 'Нож-бабочка | Фаза 2',
-                price: '$890.75',
-                rarity: 'Запрещённый',
-                quality: 'После полевых испытаний',
-                description: 'Редкий нож с розово-голубым градиентом'
-            },
-            gloves: {
-                emoji: '🧤',
-                name: 'Перчатки | Спектр',
-                price: '$2,150.00',
-                rarity: 'Тайное',
-                quality: 'Прямо с завода',
-                description: 'Элитные перчатки с неоновым свечением'
-            }
-        };
-
-        function selectWeapon(weaponType) {
-            const weapon = weapons[weaponType];
-            const weaponModel = document.getElementById('weaponModel');
-            
-            // Update active button
-            document.querySelectorAll('.skin-control-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update weapon display
-            weaponModel.textContent = weapon.emoji;
-            weaponModel.style.transform = 'rotateY(0deg)';
-            currentRotation = 0;
-            
-            // Update weapon info
-            document.getElementById('skinName').textContent = weapon.name;
-            document.getElementById('skinPrice').textContent = weapon.price;
-            document.getElementById('skinRarity').textContent = weapon.rarity;
-            document.getElementById('skinQuality').textContent = weapon.quality;
-            document.getElementById('skinDescription').textContent = weapon.description;
-        }
-
-        function startRotation(event) {
-            isRotating = true;
-            startX = event.clientX;
-            document.addEventListener('mousemove', rotateWeapon);
-            document.addEventListener('mouseup', stopRotation);
-        }
-
-        function rotateWeapon(event) {
-            if (!isRotating) return;
-            
-            const deltaX = event.clientX - startX;
-            currentRotation += deltaX * 0.5;
-            
-            const weaponModel = document.getElementById('weaponModel');
-            weaponModel.style.transform = `rotateY(${currentRotation}deg)`;
-            
-            startX = event.clientX;
-        }
-
-        function stopRotation() {
-            isRotating = false;
-            document.removeEventListener('mousemove', rotateWeapon);
-            document.removeEventListener('mouseup', stopRotation);
-        }
-
-        function changeLighting(lightingType) {
-            const displayArea = document.querySelector('.skin-display-area');
-            
-            // Update active button
-            document.querySelectorAll('.lighting-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Change background based on lighting
-            const backgrounds = {
-                default: 'linear-gradient(135deg, #1e1b4b, #312e81)',
-                dark: 'linear-gradient(135deg, #0f172a, #1e293b)',
-                studio: 'linear-gradient(135deg, #374151, #6b7280)',
-                sunset: 'linear-gradient(135deg, #f59e0b, #dc2626)'
-            };
-            
-            displayArea.style.background = backgrounds[lightingType];
         }
 
         // Achievements System
@@ -1308,6 +1015,7 @@
         // Premium Subscription
         function showPremiumModal() {
             document.getElementById('premiumModal').style.display = 'flex';
+            closeMenu();
         }
 
         function closePremiumModal() {
@@ -1315,22 +1023,32 @@
         }
 
         function subscribePremium() {
-            alert('🎉 Спасибо за оформление премиум подписки! В реальной версии здесь будет платежная система.');
+            alert('Спасибо за оформление премиум подписки! В реальной версии здесь будет платежная система.');
             closePremiumModal();
         }
 
-        // Discord Bot Info
+        // Additional Functions
         function showDiscordBotInfo() {
-            alert('🤖 Discord бот SPORTCLATCH\n\nФункции:\n• Уведомления о матчах\n• Статистика в реальном времени\n• Быстрая регистрация на турниры\n\nСсылка для добавления: discord.gg/sportclatch');
+            alert('Discord бот SPORTCLATCH\n\nФункции:\n• Уведомления о матчах\n• Статистика в реальном времени\n• Быстрая регистрация на турниры\n\nСсылка для добавления: discord.gg/sportclatch');
+            closeMenu();
+        }
+
+        function showSettings() {
+            alert('Настройки платформы\n\nЗдесь можно настроить уведомления, приватность и другие параметры аккаунта.');
+            closeMenu();
+        }
+
+        function showHelp() {
+            alert('Центр помощи SPORTCLATCH\n\nЕсли у вас возникли вопросы, обратитесь в нашу службу поддержки.');
+            closeMenu();
         }
 
         function steamLogin() {
-            alert('🚀 В реальной версии здесь будет переход на авторизацию через Steam');
+            alert('В реальной версии здесь будет переход на авторизацию через Steam');
         }
 
         // Initialize all systems
         document.addEventListener('DOMContentLoaded', function() {
-            selectWeapon('ak47');
             loadAchievements('homeAchievements');
             loadAchievements('profileAchievements');
             loadLeaderboard();
