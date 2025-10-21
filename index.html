@@ -245,11 +245,6 @@
             transform: translateY(-2px);
         }
 
-        .btn-success {
-            background: linear-gradient(135deg, var(--accent), #059669);
-            color: white;
-        }
-
         /* Stats */
         .stats-grid {
             display: grid;
@@ -309,35 +304,121 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
-        /* Tournament Cards */
-        .tournament-card {
+        /* 3D Skin Viewer */
+        .skin-viewer-container {
             background: var(--surface);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            margin: 2rem 0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .skin-viewer-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .skin-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .skin-control-btn {
+            background: var(--card);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .tournament-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .tournament-header {
-            display: flex;
-            justify-content: between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .tournament-prize {
-            background: linear-gradient(135deg, var(--secondary), #d97706);
+        .skin-control-btn:hover, .skin-control-btn.active {
+            background: var(--primary);
             color: white;
+            border-color: var(--primary);
+        }
+
+        .skin-display-area {
+            position: relative;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-radius: 16px;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .skin-3d-model {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .weapon-model {
+            font-size: 8rem;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            cursor: grab;
+        }
+
+        .weapon-model:active {
+            cursor: grabbing;
+        }
+
+        .lighting-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .lighting-btn {
+            background: var(--card);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--text);
             padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lighting-btn:hover, .lighting-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .skin-info {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .skin-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+        }
+
+        .skin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skin-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
         }
 
         /* Footer */
@@ -407,6 +488,14 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .skin-controls {
+                justify-content: center;
+            }
+
+            .weapon-model {
+                font-size: 5rem;
+            }
         }
     </style>
 </head>
@@ -421,7 +510,7 @@
             <div class="nav-links">
                 <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
                 <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
-                <a href="#" class="nav-link" onclick="showSection('tournaments')">Турниры</a>
+                <a href="#" class="nav-link" onclick="showSection('skins')">3D Скины</a>
                 <a href="#" class="nav-link" onclick="showSection('teams')">Команды</a>
                 <button class="btn btn-primary" onclick="steamLogin()">
                     <span>🎮</span>
@@ -437,15 +526,15 @@
         <section id="home" class="section active">
             <div class="hero">
                 <h1>Стань легендой киберспорта</h1>
-                <p>Продвинутая платформа для игроков CS2. Статистика, команды, турниры и многое другое в одном месте.</p>
+                <p>Продвинутая платформа для игроков CS2. Статистика, 3D скины, команды и многое другое в одном месте.</p>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="showSection('stats')">
                         <span>📊</span>
                         Моя статистика
                     </button>
-                    <button class="btn btn-secondary" onclick="showSection('tournaments')">
-                        <span>🏆</span>
-                        Смотреть турниры
+                    <button class="btn btn-secondary" onclick="showSection('skins')">
+                        <span>🔫</span>
+                        3D Просмотр скинов
                     </button>
                 </div>
             </div>
@@ -462,9 +551,9 @@
                     <p>Найдите идеальных тиммейтов по рейтингу, стилю игры и времени активности</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">💰</div>
-                    <h3>Турниры с призами</h3>
-                    <p>Участвуйте в регулярных турнирах с призовыми фондами до $10,000</p>
+                    <div class="card-icon">🎨</div>
+                    <h3>3D Просмотр скинов</h3>
+                    <p>Интерактивный просмотр скинов CS2 с разным освещением и углами обзора</p>
                 </div>
             </div>
         </section>
@@ -494,45 +583,76 @@
             <div id="statsResults" style="margin-top: 2rem;"></div>
         </section>
 
-        <!-- Tournaments Section -->
-        <section id="tournaments" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🏆 Активные турниры</h2>
+        <!-- 3D Skins Section -->
+        <section id="skins" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🎨 3D Просмотр скинов</h2>
             
-            <div class="tournament-card">
-                <div class="tournament-header">
-                    <h3 style="flex: 1;">SPORTCLATCH Championship</h3>
-                    <span class="tournament-prize">$5,000</span>
+            <div class="skin-viewer-container">
+                <div class="skin-viewer-header">
+                    <h3>Интерактивный просмотр скинов CS2</h3>
                 </div>
-                <p style="color: var(--text-light); margin-bottom: 1rem;">Крупнейший турнир месяца с участием топ-команд</p>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">32</div>
-                        <div class="stat-label">Команды</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">25.10</div>
-                        <div class="stat-label">Дата начала</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">128</div>
-                        <div class="stat-label">Участников</div>
+
+                <div class="skin-controls">
+                    <button class="skin-control-btn active" onclick="selectWeapon('ak47')">AK-47</button>
+                    <button class="skin-control-btn" onclick="selectWeapon('awp')">AWP</button>
+                    <button class="skin-control-btn" onclick="selectWeapon('knife')">Нож</button>
+                    <button class="skin-control-btn" onclick="selectWeapon('gloves')">Перчатки</button>
+                </div>
+
+                <div class="skin-display-area">
+                    <div class="skin-3d-model" id="skinModel" onmousedown="startRotation(event)">
+                        <div class="weapon-model" id="weaponModel">🔫</div>
                     </div>
                 </div>
-                <button class="btn btn-success" style="margin-top: 1rem;">
-                    <span>✅</span>
-                    Участвовать
-                </button>
+
+                <div class="lighting-controls">
+                    <button class="lighting-btn active" onclick="changeLighting('default')">🔆 Стандартное</button>
+                    <button class="lighting-btn" onclick="changeLighting('dark')">🌙 Тёмное</button>
+                    <button class="lighting-btn" onclick="changeLighting('studio')">💡 Студия</button>
+                    <button class="lighting-btn" onclick="changeLighting('sunset')">🌅 Закат</button>
+                </div>
+
+                <div class="skin-info">
+                    <h4 id="skinName">AK-47 | Красная линия</h4>
+                    <div class="skin-price" id="skinPrice">$245.50</div>
+                    <p id="skinDescription">Легендарный скин с уникальным дизайном и редкой расцветкой</p>
+                    
+                    <div class="skin-stats">
+                        <div class="skin-stat">
+                            <div style="font-weight: 600;">Редкость</div>
+                            <div style="color: var(--secondary);" id="skinRarity">Запрещённый</div>
+                        </div>
+                        <div class="skin-stat">
+                            <div style="font-weight: 600;">Качество</div>
+                            <div style="color: var(--accent);" id="skinQuality">Прямо с завода</div>
+                        </div>
+                        <div class="skin-stat">
+                            <div style="font-weight: 600;">Год</div>
+                            <div>2014</div>
+                        </div>
+                        <div class="skin-stat">
+                            <div style="font-weight: 600;">Коллекция</div>
+                            <div>Train</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="tournament-card">
-                <div class="tournament-header">
-                    <h3 style="flex: 1;">Weekly Showdown</h3>
-                    <span class="tournament-prize">$1,000</span>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Вращение 360°</h3>
+                    <p>Кликните и перетащите для вращения оружия. Полный контроль над углом обзора</p>
                 </div>
-                <p style="color: var(--text-light); margin-bottom: 1rem;">Еженедельный турнир для всех желающих</p>
-                <div class="btn-group">
-                    <button class="btn btn-primary">Участвовать</button>
-                    <button class="btn btn-secondary">Подробнее</button>
+                <div class="card">
+                    <div class="card-icon">💡</div>
+                    <h3>Разное освещение</h3>
+                    <p>Тестируйте скины при разном освещении чтобы увидеть все детали и оттенки</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Детальная информация</h3>
+                    <p>Полная информация о скине: цена, редкость, качество и история</p>
                 </div>
             </div>
         </section>
@@ -570,7 +690,7 @@
                 <ul class="footer-links">
                     <li><a href="#" onclick="showSection('home')">Главная</a></li>
                     <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
-                    <li><a href="#" onclick="showSection('tournaments')">Турниры</a></li>
+                    <li><a href="#" onclick="showSection('skins')">3D Скины</a></li>
                     <li><a href="#" onclick="showSection('teams')">Команды</a></li>
                 </ul>
             </div>
@@ -683,13 +803,122 @@
             `;
         }
 
+        // 3D Skin Viewer functionality
+        let isRotating = false;
+        let startX = 0;
+        let currentRotation = 0;
+
+        const weapons = {
+            ak47: {
+                emoji: '🔫',
+                name: 'AK-47 | Красная линия',
+                price: '$245.50',
+                rarity: 'Запрещённый',
+                quality: 'Прямо с завода',
+                description: 'Легендарный скин с уникальным дизайном и редкой расцветкой'
+            },
+            awp: {
+                emoji: '🎯',
+                name: 'AWP | Дракон Лор',
+                price: '$1,845.00',
+                rarity: 'Запрещённый',
+                quality: 'Немного поношенное',
+                description: 'Эксклюзивный скин с детализированным изображением дракона'
+            },
+            knife: {
+                emoji: '🔪',
+                name: 'Нож-бабочка | Фаза 2',
+                price: '$890.75',
+                rarity: 'Запрещённый',
+                quality: 'После полевых испытаний',
+                description: 'Редкий нож с розово-голубым градиентом'
+            },
+            gloves: {
+                emoji: '🧤',
+                name: 'Перчатки | Спектр',
+                price: '$2,150.00',
+                rarity: 'Тайное',
+                quality: 'Прямо с завода',
+                description: 'Элитные перчатки с неоновым свечением'
+            }
+        };
+
+        function selectWeapon(weaponType) {
+            const weapon = weapons[weaponType];
+            const weaponModel = document.getElementById('weaponModel');
+            
+            // Update active button
+            document.querySelectorAll('.skin-control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update weapon display
+            weaponModel.textContent = weapon.emoji;
+            weaponModel.style.transform = 'rotateY(0deg)';
+            currentRotation = 0;
+            
+            // Update weapon info
+            document.getElementById('skinName').textContent = weapon.name;
+            document.getElementById('skinPrice').textContent = weapon.price;
+            document.getElementById('skinRarity').textContent = weapon.rarity;
+            document.getElementById('skinQuality').textContent = weapon.quality;
+            document.getElementById('skinDescription').textContent = weapon.description;
+        }
+
+        function startRotation(event) {
+            isRotating = true;
+            startX = event.clientX;
+            document.addEventListener('mousemove', rotateWeapon);
+            document.addEventListener('mouseup', stopRotation);
+        }
+
+        function rotateWeapon(event) {
+            if (!isRotating) return;
+            
+            const deltaX = event.clientX - startX;
+            currentRotation += deltaX * 0.5;
+            
+            const weaponModel = document.getElementById('weaponModel');
+            weaponModel.style.transform = `rotateY(${currentRotation}deg)`;
+            
+            startX = event.clientX;
+        }
+
+        function stopRotation() {
+            isRotating = false;
+            document.removeEventListener('mousemove', rotateWeapon);
+            document.removeEventListener('mouseup', stopRotation);
+        }
+
+        function changeLighting(lightingType) {
+            const displayArea = document.querySelector('.skin-display-area');
+            
+            // Update active button
+            document.querySelectorAll('.lighting-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Change background based on lighting
+            const backgrounds = {
+                default: 'linear-gradient(135deg, #1e1b4b, #312e81)',
+                dark: 'linear-gradient(135deg, #0f172a, #1e293b)',
+                studio: 'linear-gradient(135deg, #374151, #6b7280)',
+                sunset: 'linear-gradient(135deg, #f59e0b, #dc2626)'
+            };
+            
+            displayArea.style.background = backgrounds[lightingType];
+        }
+
         function steamLogin() {
             alert('🚀 В реальной версии здесь будет переход на авторизацию через Steam');
         }
 
-        // Initialize
+        // Initialize 3D viewer with default weapon
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('SPORTCLATCH loaded successfully!');
+            selectWeapon('ak47');
+            console.log('SPORTCLATCH 3D Skin Viewer loaded!');
         });
     </script>
 </body>
