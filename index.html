@@ -4,458 +4,693 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPORTCLATCH - Киберспортивная платформа</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Arial', sans-serif; }
-        body { 
-            background: #0f1a25; 
-            color: #e8f4f8; 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --background: #0f0f1a;
+            --surface: #1a1a2e;
+            --card: #252547;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --success: #22c55e;
+            --warning: #eab308;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(46, 204, 113, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(230, 126, 34, 0.08) 0%, transparent 50%);
+            overflow-x: hidden;
         }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
+
         /* Header */
-        header { 
-            background: rgba(21, 40, 58, 0.95); 
-            padding: 18px 0; 
-            border-bottom: 2px solid #2ecc71;
-            position: sticky;
+        .navbar {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            padding: 1rem 0;
         }
-        .nav-container { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
-        .logo { 
-            font-size: 28px; 
-            font-weight: 800; 
-            background: linear-gradient(135deg, #2ecc71 0%, #e67e22 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-        nav { display: flex; gap: 35px; }
-        nav a { 
-            color: #a8d5e5; 
-            text-decoration: none; 
-            transition: all 0.3s;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        nav a:hover { 
-            color: #2ecc71; 
-            background: rgba(46, 204, 113, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        /* Hero Section */
-        .hero { 
-            padding: 140px 0 100px; 
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle, rgba(46, 204, 113, 0.1) 0%, transparent 50%),
-                radial-gradient(circle, rgba(230, 126, 34, 0.1) 50%, transparent 70%);
-            animation: float 8s ease-in-out infinite;
-        }
-        .hero h1 { 
-            font-size: 4em; 
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, #2ecc71 0%, #e67e22 50%, #f1c40f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            gap: 0.75rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            position: relative;
-            text-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
-        }
-        .hero p { 
-            font-size: 1.3em; 
-            color: #b8d8e8; 
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-        
-        /* Buttons */
-        .btn { 
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); 
-            color: white; 
-            padding: 16px 40px; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 16px; 
-            cursor: pointer;
-            margin: 12px;
-            transition: all 0.3s;
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
-        }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        .btn:hover::before {
-            left: 100%;
-        }
-        .btn:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.4);
-        }
-        .btn-orange {
-            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
-            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
-        }
-        .btn-orange:hover {
-            box-shadow: 0 15px 35px rgba(230, 126, 34, 0.4);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #2ecc71;
-            color: #2ecc71;
-            box-shadow: none;
-        }
-        .btn-outline:hover {
-            background: rgba(46, 204, 113, 0.1);
-            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.2);
-        }
-        
-        /* Sections */
-        .section { padding: 100px 0; }
-        .section-title { 
-            text-align: center; 
-            font-size: 3em; 
-            margin-bottom: 60px; 
-            background: linear-gradient(135deg, #2ecc71 0%, #e67e22 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
         }
-        
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
-        .feature-card {
-            background: rgba(33, 57, 77, 0.8);
-            padding: 45px 35px;
-            border-radius: 20px;
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .section {
+            display: none;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
             text-align: center;
-            transition: all 0.4s;
-            border: 1px solid #2c3e50;
-            backdrop-filter: blur(10px);
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(245, 158, 11, 0.05));
+            border-radius: 24px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .feature-card::before {
+
+        .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #2ecc71, #e67e22, #f1c40f);
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
-        .feature-card:hover {
-            transform: translateY(-12px);
-            border-color: #2ecc71;
-            box-shadow: 0 25px 50px rgba(46, 204, 113, 0.2);
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-        .feature-icon {
-            font-size: 3.5em;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, #2ecc71, #e67e22);
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .feature-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #ffffff;
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
         }
-        .feature-card p {
-            color: #b8d8e8;
-            line-height: 1.7;
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.6;
         }
-        
-        /* Stats Section */
-        .stats-container {
-            background: rgba(33, 57, 77, 0.9);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px auto;
-            max-width: 900px;
-            border: 2px solid #2ecc71;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.15);
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
         }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--accent), #059669);
+            color: white;
+        }
+
+        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
+
         .stat-card {
-            background: rgba(21, 40, 58, 0.8);
-            padding: 25px;
-            border-radius: 15px;
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid #34495e;
-            transition: all 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
-        .stat-card:hover {
-            border-color: #e67e22;
-            transform: translateY(-5px);
-        }
+
         .stat-value {
-            font-size: 2.2em;
+            font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2ecc71, #e67e22);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 10px 0;
+            margin-bottom: 0.5rem;
         }
-        
-        /* Tournaments */
-        .tournaments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--surface);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Tournament Cards */
         .tournament-card {
-            background: rgba(33, 57, 77, 0.8);
-            padding: 30px;
-            border-radius: 18px;
-            border-left: 4px solid;
-            border-image: linear-gradient(135deg, #2ecc71, #e67e22) 1;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
         }
+
         .tournament-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
-        
+
+        .tournament-header {
+            display: flex;
+            justify-content: between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .tournament-prize {
+            background: linear-gradient(135deg, var(--secondary), #d97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         /* Footer */
-        footer {
-            background: rgba(21, 40, 58, 0.95);
-            padding: 60px 0 25px;
-            border-top: 2px solid #2ecc71;
-            margin-top: 80px;
+        .footer {
+            background: var(--surface);
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
         }
+
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 45px;
-            margin-bottom: 35px;
+            gap: 3rem;
         }
-        .footer-column h3 {
-            background: linear-gradient(135deg, #2ecc71, #e67e22);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 25px;
-            font-weight: 700;
+
+        .footer-section h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
         }
-        .footer-column a {
-            color: #b8d8e8;
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
             text-decoration: none;
-            display: block;
-            margin-bottom: 12px;
-            transition: all 0.3s;
+            transition: color 0.3s ease;
         }
-        .footer-column a:hover {
-            color: #2ecc71;
-            transform: translateX(5px);
+
+        .footer-links a:hover {
+            color: var(--primary);
         }
-        
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        
-        /* Mobile Responsive */
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 20px; }
-            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
-            .hero h1 { font-size: 2.8em; }
-            .hero p { font-size: 1.1em; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .section { padding: 70px 0; }
-            .section-title { font-size: 2.3em; }
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">
-                    <span>⚡</span>
-                    SPORTCLATCH
-                </div>
-                <nav>
-                    <a href="#main">Главная</a>
-                    <a href="#features">Возможности</a>
-                    <a href="#tournaments">Турниры</a>
-                    <a href="#about">О нас</a>
-                </nav>
-                <div>
-                    <button class="btn" onclick="steamLogin()">🚀 Войти через Steam</button>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>⚡</span>
+                SPORTCLATCH
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
+                <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
+                <a href="#" class="nav-link" onclick="showSection('tournaments')">Турниры</a>
+                <a href="#" class="nav-link" onclick="showSection('teams')">Команды</a>
+                <button class="btn btn-primary" onclick="steamLogin()">
+                    <span>🎮</span>
+                    Войти через Steam
+                </button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Hero Section -->
-    <section class="hero" id="main">
-        <div class="container">
-            <h1>Твой клатч в мире киберспорта!</h1>
-            <p>Яркая платформа для чемпионов CS2 с современным дизайном и передовыми технологиями</p>
-            
-            <button class="btn" onclick="steamLogin()">🚀 Войти через Steam</button>
-            <button class="btn btn-orange" onclick="showDemo()">🎯 Демо-турнир</button>
-            <button class="btn btn-outline" onclick="showStats()">📊 Посмотреть статистику</button>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="section" id="features">
-        <div class="container">
-            <h2 class="section-title">Наши возможности</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Живая статистика</h3>
-                    <p>Реальная статистика CS2 через Steam API с автоматическим обновлением</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Стань легендой киберспорта</h1>
+                <p>Продвинутая платформа для игроков CS2. Статистика, команды, турниры и многое другое в одном месте.</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showSection('stats')">
+                        <span>📊</span>
+                        Моя статистика
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('tournaments')">
+                        <span>🏆</span>
+                        Смотреть турниры
+                    </button>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Детальная аналитика</h3>
+                    <p>Полная статистика ваших матчей, K/D ratio, винрейт и прогресс скилла с красивыми графиками</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
                     <h3>Умный поиск команды</h3>
-                    <p>AI-подбор тиммейтов по стилю игры, рейтингу и времени активности</p>
+                    <p>Найдите идеальных тиммейтов по рейтингу, стилю игры и времени активности</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Премиум турниры</h3>
-                    <p>Еженедельные турниры с призовыми фондами до $10,000</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Тренировочный лагерь</h3>
-                    <p>Персонализированные программы для прокачки скилла до профессионального уровня</p>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Турниры с призами</h3>
+                    <p>Участвуйте в регулярных турнирах с призовыми фондами до $10,000</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Stats Preview -->
-    <section class="section">
-        <div class="container">
-            <div class="stats-container">
-                <h2 style="text-align: center; margin-bottom: 30px; background: linear-gradient(135deg, #2ecc71, #e67e22); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📊 Пример статистики</h2>
+        <!-- Stats Section -->
+        <section id="stats" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">📊 Статистика CS2</h2>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem;">Получить статистику</h3>
+                <div class="form-group">
+                    <label class="form-label">Ваш Steam ID или профиль</label>
+                    <input type="text" class="form-input" placeholder="76561197960287930 или ссылка на профиль" id="steamIdInput">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="loadRealStats()">
+                        <span>🚀</span>
+                        Загрузить статистику
+                    </button>
+                    <button class="btn btn-secondary" onclick="loadDemoStats()">
+                        <span>🎮</span>
+                        Демо-режим
+                    </button>
+                </div>
+            </div>
+
+            <div id="statsResults" style="margin-top: 2rem;"></div>
+        </section>
+
+        <!-- Tournaments Section -->
+        <section id="tournaments" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">🏆 Активные турниры</h2>
+            
+            <div class="tournament-card">
+                <div class="tournament-header">
+                    <h3 style="flex: 1;">SPORTCLATCH Championship</h3>
+                    <span class="tournament-prize">$5,000</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 1rem;">Крупнейший турнир месяца с участием топ-команд</p>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div>K/D Ratio</div>
-                        <div class="stat-value">1.45</div>
-                        <div style="color: #b8d8e8;">Превосходно</div>
+                        <div class="stat-value">32</div>
+                        <div class="stat-label">Команды</div>
                     </div>
                     <div class="stat-card">
-                        <div>Headshots</div>
-                        <div class="stat-value">42%</div>
-                        <div style="color: #b8d8e8;">Профи уровень</div>
+                        <div class="stat-value">25.10</div>
+                        <div class="stat-label">Дата начала</div>
                     </div>
                     <div class="stat-card">
-                        <div>Win Rate</div>
-                        <div class="stat-value">58%</div>
-                        <div style="color: #b8d8e8;">Чемпион</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>MVPs</div>
-                        <div class="stat-value">1,247</div>
-                        <div style="color: #b8d8e8;">Лидер команды</div>
+                        <div class="stat-value">128</div>
+                        <div class="stat-label">Участников</div>
                     </div>
                 </div>
-                <div style="text-align: center;">
-                    <button class="btn" onclick="steamLogin()">📊 Получить мою статистику</button>
-                </div>
+                <button class="btn btn-success" style="margin-top: 1rem;">
+                    <span>✅</span>
+                    Участвовать
+                </button>
             </div>
-        </div>
-    </section>
 
-    <!-- Tournaments Section -->
-    <section class="section" id="tournaments" style="background: rgba(33, 57, 77, 0.6);">
-        <div class="container">
-            <h2 class="section-title">Горячие турниры</h2>
-            <div class="tournaments-grid">
-                <div class="tournament-card">
-                    <h3>🚀 SPORTCLATCH Open</h3>
-                    <p>Призовой фонд: <strong style="color: #2ecc71;">$5,000</strong></p>
-                    <p>📅 25 октября 2024</p>
-                    <p>👥 32 команды</p>
-                    <button class="btn" style="margin-top: 20px;">Участвовать</button>
+            <div class="tournament-card">
+                <div class="tournament-header">
+                    <h3 style="flex: 1;">Weekly Showdown</h3>
+                    <span class="tournament-prize">$1,000</span>
                 </div>
-                <div class="tournament-card">
-                    <h3>⚡ Weekly Cup</h3>
-                    <p>Призовой фонд: <strong style="color: #e67e22;">$1,000</strong></p>
-                    <p>📅 Каждую субботу</p>
-                    <p>👥 16 команд</p>
-                    <button class="btn btn-orange" style="margin-top: 20px;">Участвовать</button>
-                </div>
-                <div class="tournament-card">
-                    <h3>🎯 1v1 Arena</h3>
-                    <p>Призовой фонд: <strong style="color: #f1c40f;">$500</strong></p>
-                    <p>📅 Ежедневно в 20:00</p>
-                    <p>⚔️ Индивидуальные сражения</p>
-                    <button class="btn" style="margin-top: 20px;">Участвовать</button>
+                <p style="color: var(--text-light); margin-bottom: 1rem;">Еженедельный турнир для всех желающих</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary">Участвовать</button>
+                    <button class="btn btn-secondary">Подробнее</button>
                 </div>
             </div>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="section">
+            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">👥 Поиск команды</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Найти команду</h3>
+                    <p>Ищете тиммейтов для участия в турнирах? Наша система подберет идеальных партнеров</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Найти команду</button>
+                </div>
+                <div class="card">
+                    <div class="card-icon">➕</div>
+                    <h3>Создать команду</h3>
+                    <p>Соберите свою команду мечты и начните покорять киберспортивную сцену</p>
+                    <button class="btn btn-secondary" style="margin-top: 1rem;">Создать команду</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SPORTCLATCH</h3>
+                <p style="color: var(--text-light);">Ведущая киберспортивная платформа для игроков CS2</p>
+            </div>
+            <div class="footer-section">
+                <h3>Разделы</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showSection('home')">Главная</a></li>
+                    <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
+                    <li><a href="#" onclick="showSection('tournaments')">Турниры</a></li>
+                    <li><a href="#" onclick="showSection('teams')">Команды</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Документация</a></li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </footer>
 
     <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        // Stats functionality
+        function loadRealStats() {
+            const steamId = document.getElementById('steamIdInput').value.trim();
+            if (!steamId) {
+                alert('Пожалуйста, введите ваш Steam ID');
+                return;
+            }
+
+            // Simulate API call
+            setTimeout(() => {
+                const stats = generateRealisticStats();
+                displayStats(stats, false);
+            }, 1500);
+        }
+
+        function loadDemoStats() {
+            const stats = generateRealisticStats();
+            displayStats(stats, true);
+        }
+
+        function generateRealisticStats() {
+            return {
+                kd: (Math.random() * 1.5 + 0.8).toFixed(2),
+                wins: Math.floor(Math.random() * 800 + 200),
+                headshots: Math.floor(Math.random() * 4000 + 1000),
+                matches: Math.floor(Math.random() * 1200 + 400),
+                mvps: Math.floor(Math.random() * 1500 + 300),
+                damage: Math.floor(Math.random() * 5000000 + 2000000),
+                rank: ['Silver Elite', 'Gold Nova I', 'MG I', 'LE', 'Global Elite'][Math.floor(Math.random() * 5)]
+            };
+        }
+
+        function displayStats(stats, isDemo) {
+            const kdColor = stats.kd >= 1.2 ? 'var(--success)' : stats.kd >= 0.9 ? 'var(--warning)' : 'var(--error)';
+            
+            document.getElementById('statsResults').innerHTML = `
+                <div class="card">
+                    <h3>${isDemo ? '🎮 Демо-статистика' : '📊 Ваша статистика'}</h3>
+                    ${isDemo ? '<p style="color: var(--warning); margin-bottom: 1rem;">Это демонстрационные данные. Введите реальный Steam ID для получения настоящей статистики.</p>' : ''}
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" style="color: ${kdColor}">${stats.kd}</div>
+                            <div class="stat-label">K/D Ratio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.wins}</div>
+                            <div class="stat-label">Побед</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.headshots}</div>
+                            <div class="stat-label">Хедшотов</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.matches}</div>
+                            <div class="stat-label">Матчей</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--card); border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Ранг:</span>
+                            <strong style="color: var(--primary)">${stats.rank}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>MVP звезды:</span>
+                            <strong>${stats.mvps}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Нанесено урона:</span>
+                            <strong>${(stats.damage / 1000000).toFixed(1)}M</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function steamLogin() {
-            alert("🚀 В реальной версии здесь будет переход на Steam OpenID авторизацию!");
+            alert('🚀 В реальной версии здесь будет переход на авторизацию через Steam');
         }
 
-        function showDemo() {
-            alert("🎯 Демо-турнир!\n\nВ реальной версии здесь будет регистрация на турниры с призовыми фондами!");
-        }
-
-        function showStats() {
-            alert("📊 Статистика CS2!\n\nЗдесь будет ваша реальная статистика из Steam!");
-        }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('SPORTCLATCH loaded successfully!');
+        });
     </script>
 </body>
 </html>
