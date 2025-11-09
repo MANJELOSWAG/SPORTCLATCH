@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стеклянный дизайн</title>
+    <title>m1nkk shot - игровая платформа</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #4a00e0;
+            --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --glass-bg: rgba(30, 30, 46, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --card-bg: rgba(40, 40, 60, 0.5);
+        }
+
+        .theme-purple {
+            --primary-color: #8a2be2;
+            --secondary-color: #4a00e0;
+        }
+
+        .theme-blue {
+            --primary-color: #2196F3;
+            --secondary-color: #0D47A1;
+        }
+
+        .theme-green {
+            --primary-color: #4CAF50;
+            --secondary-color: #1B5E20;
+        }
+
+        .theme-red {
+            --primary-color: #f44336;
+            --secondary-color: #b71c1c;
+        }
+
+        .theme-orange {
+            --primary-color: #FF9800;
+            --secondary-color: #E65100;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,26 +49,27 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: var(--background);
+            color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
-            padding: 20px;
+            transition: background 0.5s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Стили для стеклянного эффекта */
         .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         /* Шапка */
@@ -41,13 +78,26 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
-            margin-bottom: 30px;
+            margin: 20px 0 30px;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         /* Кнопка меню */
@@ -86,10 +136,10 @@
         .sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 300px;
+            right: -350px;
+            width: 350px;
             height: 100vh;
-            padding: 80px 30px 30px;
+            padding: 100px 30px 30px;
             transition: right 0.4s ease;
             z-index: 90;
         }
@@ -104,7 +154,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(3px);
             opacity: 0;
             visibility: hidden;
@@ -129,42 +179,81 @@
             color: white;
             text-decoration: none;
             font-size: 1.2rem;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             transform: translateX(5px);
         }
 
+        .nav-links i {
+            width: 25px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
         /* Основной контент */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
         .main-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .card {
             padding: 25px;
             transition: transform 0.3s ease;
+            background: var(--card-bg);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
 
         .card h2 {
             margin-bottom: 15px;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: var(--primary-color);
         }
 
         .card p {
             line-height: 1.6;
             opacity: 0.9;
+            margin-bottom: 15px;
         }
 
         /* Кнопки */
@@ -172,34 +261,103 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .btn {
             padding: 12px 25px;
             border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
         .btn-primary {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-steam {
+            background: linear-gradient(135deg, #1b2838, #2a475e);
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-steam:hover {
+            background: linear-gradient(135deg, #2a475e, #1b2838);
+        }
+
+        /* Выбор темы */
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .theme-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-option.active {
+            border-color: white;
+            transform: scale(1.1);
+        }
+
+        .theme-purple-option {
+            background: linear-gradient(135deg, #8a2be2, #4a00e0);
+        }
+
+        .theme-blue-option {
+            background: linear-gradient(135deg, #2196F3, #0D47A1);
+        }
+
+        .theme-green-option {
+            background: linear-gradient(135deg, #4CAF50, #1B5E20);
+        }
+
+        .theme-red-option {
+            background: linear-gradient(135deg, #f44336, #b71c1c);
+        }
+
+        .theme-orange-option {
+            background: linear-gradient(135deg, #FF9800, #E65100);
         }
 
         /* Футер */
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+            padding: 25px;
+            margin-top: 50px;
             font-size: 0.9rem;
             opacity: 0.8;
         }
@@ -215,19 +373,96 @@
             }
             
             .sidebar {
-                width: 250px;
+                width: 280px;
             }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-controls {
+                gap: 10px;
+            }
+        }
+
+        /* Стили для формы входа */
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .divider span {
+            padding: 0 15px;
         }
     </style>
 </head>
-<body>
+<body class="theme-purple">
     <div class="container">
         <header class="glass">
-            <div class="logo">GlassStyle</div>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>m1nkk shot</span>
+            </div>
+            <div class="header-controls">
+                <div class="theme-selector">
+                    <div class="theme-option theme-purple-option active" data-theme="purple"></div>
+                    <div class="theme-option theme-blue-option" data-theme="blue"></div>
+                    <div class="theme-option theme-green-option" data-theme="green"></div>
+                    <div class="theme-option theme-red-option" data-theme="red"></div>
+                    <div class="theme-option theme-orange-option" data-theme="orange"></div>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </header>
 
@@ -235,45 +470,83 @@
 
         <nav class="sidebar glass" id="sidebar">
             <ul class="nav-links">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">О нас</a></li>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Портфолио</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i> Достижения</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Сообщество</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> Магазин</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Помощь</a></li>
             </ul>
         </nav>
 
+        <section class="hero">
+            <h1>Игровая платформа m1nkk shot</h1>
+            <p>Присоединяйтесь к миллионам игроков по всему миру. Открывайте новые игры, общайтесь с друзьями и делитесь своими достижениями.</p>
+            
+            <div class="login-form glass">
+                <h2>Вход в аккаунт</h2>
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" placeholder="Введите ваш логин">
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" placeholder="Введите ваш пароль">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </button>
+                
+                <div class="divider">
+                    <span>или</span>
+                </div>
+                
+                <button class="btn btn-steam">
+                    <i class="fab fa-steam"></i> Войти через Steam
+                </button>
+                
+                <div class="theme-selector" style="margin-top: 30px;">
+                    <span style="margin-right: 10px;">Выберите тему:</span>
+                    <div class="theme-option theme-purple-option active" data-theme="purple"></div>
+                    <div class="theme-option theme-blue-option" data-theme="blue"></div>
+                    <div class="theme-option theme-green-option" data-theme="green"></div>
+                    <div class="theme-option theme-red-option" data-theme="red"></div>
+                    <div class="theme-option theme-orange-option" data-theme="orange"></div>
+                </div>
+            </div>
+        </section>
+
         <main class="main-content">
             <div class="card glass">
-                <h2>Стеклянный дизайн</h2>
-                <p>Современный стеклянный дизайн создает ощущение легкости и прозрачности. Эффект матового стекла достигается с помощью свойства backdrop-filter.</p>
-                <div class="buttons">
-                    <button class="btn btn-primary">Подробнее</button>
-                    <button class="btn">Демо</button>
-                </div>
-            </div>
-
-            <div class="card glass">
-                <h2>Адаптивный интерфейс</h2>
-                <p>Дизайн полностью адаптируется под различные размеры экранов. На мобильных устройствах элементы перестраиваются для удобного просмотра.</p>
+                <h2><i class="fas fa-fire"></i> Популярные игры</h2>
+                <p>Откройте для себя самые популярные игры сообщества. Новые релизы, бестселлеры и скрытые жемчужины игрового мира.</p>
                 <div class="buttons">
                     <button class="btn btn-primary">Исследовать</button>
-                    <button class="btn">Тестировать</button>
+                    <button class="btn">Топ игроков</button>
                 </div>
             </div>
 
             <div class="card glass">
-                <h2>Интерактивные элементы</h2>
-                <p>Все кнопки и меню полностью функциональны. Боковое меню плавно появляется при нажатии на иконку с тремя полосками.</p>
+                <h2><i class="fas fa-users"></i> Игровые сообщества</h2>
+                <p>Присоединяйтесь к обсуждениям, находите единомышленников и создавайте собственные игровые группы.</p>
                 <div class="buttons">
-                    <button class="btn btn-primary">Взаимодействовать</button>
-                    <button class="btn">Настройки</button>
+                    <button class="btn btn-primary">Присоединиться</button>
+                    <button class="btn">Создать группу</button>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h2><i class="fas fa-chart-line"></i> Статистика и достижения</h2>
+                <p>Отслеживайте свой игровой прогресс, получайте достижения и делитесь своими успехами с друзьями.</p>
+                <div class="buttons">
+                    <button class="btn btn-primary">Моя статистика</button>
+                    <button class="btn">Достижения</button>
                 </div>
             </div>
         </main>
 
         <footer class="glass">
-            <p>© 2023 Стеклянный дизайн. Все права защищены.</p>
+            <p>© 2023 m1nkk shot. Все права защищены. | Steam является зарегистрированным товарным знаком Valve Corporation.</p>
         </footer>
     </div>
 
@@ -281,7 +554,9 @@
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
+        const themeOptions = document.querySelectorAll('.theme-option');
 
+        // Управление боковым меню
         menuToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             sidebar.classList.toggle('active');
@@ -303,6 +578,38 @@
                 menuToggle.classList.remove('active');
             });
         });
+
+        // Смена темы
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                
+                // Удаляем активный класс у всех options
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                // Добавляем активный класс к выбранной option
+                this.classList.add('active');
+                
+                // Меняем класс body на выбранную тему
+                document.body.className = `theme-${theme}`;
+            });
+        });
+
+        // Эффект для кнопки Steam
+        const steamBtn = document.querySelector('.btn-steam');
+        steamBtn.addEventListener('mouseenter', function() {
+            this.innerHTML = '<i class="fab fa-steam"></i> Войти через Steam';
+        });
+        
+        steamBtn.addEventListener('mouseleave', function() {
+            this.innerHTML = '<i class="fab fa-steam"></i> Войти через Steam';
+        });
+        
+        // Имитация входа через Steam
+        steamBtn.addEventListener('click', function() {
+            alert('Перенаправление на страницу авторизации Steam...');
+            // В реальном приложении здесь был бы redirect на OAuth авторизацию Steam
+        });
     </script>
 </body>
 </html>
+
