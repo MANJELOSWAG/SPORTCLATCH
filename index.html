@@ -1,27 +1,31 @@
+Отлично! Создам стильный дизайн с эффектом стекла (glass morphism) и добавлю интересные фишки. Вот обновленный код:
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPORTCLATCH - Киберспортивная платформа</title>
+    <title>m1nkk shot - Киберспортивная платформа</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --primary-light: #60a5fa;
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
             --secondary: #f59e0b;
             --accent: #10b981;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --card: #334155;
-            --text: #f1f5f9;
-            --text-light: #cbd5e1;
-            --text-lighter: #94a3b8;
+            --background: #0f0f23;
+            --surface: rgba(255, 255, 255, 0.1);
+            --card: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.8);
+            --text-lighter: rgba(255, 255, 255, 0.6);
             --success: #22c55e;
             --warning: #eab308;
             --error: #ef4444;
-            --border: #475569;
+            --border: rgba(255, 255, 255, 0.2);
+            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
         }
 
         * {
@@ -32,15 +36,60 @@
         }
 
         body {
-            background: var(--background);
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+        }
+
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
         }
 
         /* Header */
         .navbar {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             position: fixed;
@@ -60,16 +109,29 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .logo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+            vertical-align: super;
+            animation: pulse 2s infinite;
         }
 
         .nav-center {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -78,14 +140,19 @@
             text-decoration: none;
             font-weight: 500;
             padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            border-radius: 15px;
             transition: all 0.3s ease;
             position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid transparent;
         }
 
         .nav-link:hover, .nav-link.active {
             color: var(--text);
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
         }
 
         .nav-link.active::after {
@@ -95,7 +162,7 @@
             left: 1.5rem;
             right: 1.5rem;
             height: 2px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
@@ -105,11 +172,11 @@
             align-items: center;
         }
 
-        /* Buttons */
+        /* Buttons with Glass Effect */
         .btn {
             padding: 0.875rem 1.75rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             font-weight: 600;
             font-size: 0.95rem;
             cursor: pointer;
@@ -118,45 +185,67 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
             color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--primary-light);
-            border: 1px solid var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
         }
 
         .btn-premium {
-            background: linear-gradient(135deg, var(--secondary), #d97706);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
             color: white;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
         }
 
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
         }
 
         /* Main Content */
         .main-content {
             margin-top: 80px;
             min-height: calc(100vh - 80px);
+            position: relative;
         }
 
         .section {
@@ -176,18 +265,28 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, 
-                rgba(59, 130, 246, 0.1) 0%, 
-                rgba(245, 158, 11, 0.05) 50%, 
-                rgba(16, 185, 129, 0.05) 100%);
-            border-radius: 24px;
+            padding: 8rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
             margin-bottom: 4rem;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
         }
 
         .hero::before {
@@ -197,22 +296,23 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-light);
             max-width: 600px;
             margin: 0 auto 3rem;
@@ -227,7 +327,35 @@
             margin: 2rem 0;
         }
 
-        /* Cards */
+        /* Live Stats Counter */
+        .live-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .live-stat {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            min-width: 150px;
+        }
+
+        .live-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards with Glass Effect */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -236,9 +364,10 @@
         }
 
         .card {
-            background: var(--surface);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 2.5rem;
             transition: all 0.4s ease;
             position: relative;
@@ -252,13 +381,13 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--glow);
         }
 
         .card-icon {
@@ -291,9 +420,10 @@
         }
 
         .stat-card {
-            background: var(--surface);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
             padding: 2rem;
-            border-radius: 16px;
+            border-radius: 20px;
             text-align: center;
             border: 1px solid var(--border);
             transition: all 0.3s ease;
@@ -301,7 +431,8 @@
 
         .stat-card:hover {
             border-color: var(--primary);
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
         }
 
         .stat-value {
@@ -321,8 +452,9 @@
 
         /* Forms */
         .form-container {
-            background: var(--surface);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
             padding: 3rem;
             margin: 2rem 0;
             border: 1px solid var(--border);
@@ -343,24 +475,26 @@
         .form-input {
             width: 100%;
             padding: 1.25rem;
-            background: var(--background);
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 15px;
             color: var(--text);
             font-size: 1rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
         }
 
         /* Player Profiles */
         .profile-card {
-            background: var(--surface);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
             padding: 2.5rem;
             margin: 2rem 0;
             border: 1px solid var(--border);
@@ -378,7 +512,7 @@
             height: 100px;
             border-radius: 50%;
             border: 4px solid var(--primary);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
         }
 
         .profile-badges {
@@ -395,7 +529,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
         /* Achievements */
@@ -407,12 +541,15 @@
         }
 
         .achievement-card {
-            background: var(--surface);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
             padding: 2rem;
             text-align: center;
             border: 1px solid var(--border);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .achievement-card.unlocked {
@@ -421,8 +558,9 @@
         }
 
         .achievement-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--primary);
+            box-shadow: var(--glow);
         }
 
         .achievement-icon {
@@ -431,7 +569,7 @@
         }
 
         .achievement-progress {
-            background: var(--background);
+            background: rgba(255, 255, 255, 0.1);
             height: 8px;
             border-radius: 4px;
             margin: 1.5rem 0;
@@ -446,8 +584,9 @@
 
         /* Rating System */
         .rating-leaderboard {
-            background: var(--surface);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
             padding: 3rem;
             margin: 3rem 0;
             border: 1px solid var(--border);
@@ -460,11 +599,12 @@
             padding: 1.5rem;
             border-bottom: 1px solid var(--border);
             transition: all 0.3s ease;
+            border-radius: 15px;
         }
 
         .leaderboard-item:hover {
-            background: rgba(59, 130, 246, 0.05);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
         }
 
         .leaderboard-item:last-child {
@@ -478,13 +618,14 @@
             min-width: 40px;
         }
 
-        .rank-1 { color: gold; }
-        .rank-2 { color: silver; }
-        .rank-3 { color: #cd7f32; }
+        .rank-1 { color: gold; text-shadow: 0 0 20px gold; }
+        .rank-2 { color: silver; text-shadow: 0 0 20px silver; }
+        .rank-3 { color: #cd7f32; text-shadow: 0 0 20px #cd7f32; }
 
         /* Footer */
         .footer {
-            background: var(--surface);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
             border-top: 1px solid var(--border);
             padding: 4rem 2rem 2rem;
             margin-top: 6rem;
@@ -533,16 +674,59 @@
             color: var(--text-lighter);
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+        /* Live Match Widget */
+        .live-match-widget {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .vs {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .match-score {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 1rem 0;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 3.2rem;
+                font-size: 3.5rem;
             }
             
             .card-grid {
@@ -570,7 +754,7 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero p {
@@ -597,15 +781,32 @@
                 text-align: center;
                 gap: 1.5rem;
             }
+
+            .live-stats {
+                gap: 1rem;
+            }
+
+            .live-stat {
+                min-width: 120px;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                SPORTCLATCH
+                m1nkk shot
+                <span class="logo-badge">PRO</span>
             </div>
             <div class="nav-center">
                 <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
@@ -626,8 +827,8 @@
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="hero">
-                <h1>Киберспорт нового поколения</h1>
-                <p>Откройте для себя передовую платформу для игроков CS2. Глубокая аналитика, профессиональные инструменты и сообщество чемпионов.</p>
+                <h1>Точность в каждом выстреле</h1>
+                <p>Продвинутая аналитика для чемпионов CS2. Стань легендой с помощью искусственного интеллекта и профессиональных инструментов.</p>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="showSection('stats')">
                         Анализ статистики
@@ -641,21 +842,58 @@
                 </div>
             </div>
 
+            <!-- Live Stats -->
+            <div class="live-stats">
+                <div class="live-stat">
+                    <div class="live-stat-value" id="onlinePlayers">12,847</div>
+                    <div class="stat-label">Игроков онлайн</div>
+                </div>
+                <div class="live-stat">
+                    <div class="live-stat-value" id="matchesPlayed">3,452</div>
+                    <div class="stat-label">Матчей сегодня</div>
+                </div>
+                <div class="live-stat">
+                    <div class="live-stat-value" id="tournaments">47</div>
+                    <div class="stat-label">Активных турниров</div>
+                </div>
+            </div>
+
+            <!-- Live Match Widget -->
+            <div class="live-match-widget">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary);">⚡ LIVE МАТЧ</h3>
+                <div class="match-teams">
+                    <div class="team">
+                        <div class="team-logo" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">NKK</div>
+                        <div style="font-weight: 600;">m1nkk squad</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-logo" style="background: linear-gradient(135deg, #f59e0b, #d97706);">ELT</div>
+                        <div style="font-weight: 600;">Elite Team</div>
+                    </div>
+                </div>
+                <div class="match-score">12 : 9</div>
+                <div style="color: var(--text-light);">de_dust2 • 15 раунд</div>
+                <div style="margin-top: 1rem; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 10px; display: inline-block;">
+                    🔴 LIVE трансляция
+                </div>
+            </div>
+
             <div class="card-grid">
                 <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Продвинутая аналитика</h3>
-                    <p>Получите детальную статистику ваших матчей с искусственным интеллектом, который анализирует ваш стиль игры и дает персональные рекомендации</p>
+                    <div class="card-icon">🎯</div>
+                    <h3>Умная аналитика</h3>
+                    <p>Искусственный интеллект анализирует каждый ваш выстрел и дает персональные рекомендации по улучшению навыков</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">👥</div>
-                    <h3>Профессиональные профили</h3>
-                    <p>Создайте уникальный игровой профиль с достижениями, историей матчей и подробной статистикой для привлечения спонсоров и команд</p>
+                    <div class="card-icon">⚡</div>
+                    <h3>Мгновенные результаты</h3>
+                    <p>Получайте статистику в реальном времени с задержкой менее 1 секунды. Всегда будьте в курсе своего прогресса</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🏆</div>
-                    <h3>Рейтинговая система</h3>
-                    <p>Соревнуйтесь с игроками со всего мира в нашей системе ELO рейтинга. Поднимайтесь в топ и получайте эксклюзивные награды</p>
+                    <div class="card-icon">🌟</div>
+                    <h3>Элитное сообщество</h3>
+                    <p>Присоединяйтесь к топ-игрокам, участвуйте в эксклюзивных турнирах и получайте признание ваших навыков</p>
                 </div>
             </div>
 
@@ -671,20 +909,20 @@
         <!-- Stats Section -->
         <section id="stats" class="section">
             <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Получите полную картину вашего игрового прогресса</p>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Точные данные для точных выстрелов</p>
             
             <div class="form-container">
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">Получить статистику</h3>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">🔍 Получить детальную статистику</h3>
                 <div class="form-group">
                     <label class="form-label">Ваш Steam ID или профиль</label>
                     <input type="text" class="form-input" placeholder="Введите Steam ID (например: 76561197960287930)" id="steamIdInput">
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="loadRealStats()">
-                        Загрузить статистику
+                        🚀 Загрузить статистику
                     </button>
                     <button class="btn btn-secondary" onclick="loadDemoStats()">
-                        Демо-режим
+                        🎮 Демо-режим
                     </button>
                 </div>
             </div>
@@ -694,45 +932,45 @@
 
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Игровые профили</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте профили лучших игроков и совершенствуйте свои навыки</p>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Профили игроков</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте стиль лучших и совершенствуйтесь</p>
             
             <div class="profile-card">
                 <div class="profile-header">
                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face" alt="Аватар" class="profile-avatar">
                     <div style="flex: 1;">
-                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">ProPlayer_CS2</h3>
-                        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem;">Уровень 67 • Global Elite • 3 года в игре</p>
+                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">m1nkk_shot</h3>
+                        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem;">Уровень 89 • Global Elite • Основной снайпер</p>
                         <div class="profile-badges">
-                            <span class="badge">Топ-100 мира</span>
+                            <span class="badge">Топ-50 мира</span>
                             <span class="badge">Чемпион ESL</span>
                             <span class="badge">Снайпер</span>
-                            <span class="badge">Лидер</span>
+                            <span class="badge">Неудержимый</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">1.67</div>
+                        <div class="stat-value">2.1</div>
                         <div class="stat-label">K/D Ratio</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">2,847</div>
+                        <div class="stat-value">3,847</div>
                         <div class="stat-label">Побед</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">48%</div>
+                        <div class="stat-value">52%</div>
                         <div class="stat-label">Хедшоты</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">3,452</div>
+                        <div class="stat-value">4,215</div>
                         <div class="stat-label">MVP</div>
                     </div>
                 </div>
             </div>
 
-            <h3 style="margin: 4rem 0 2rem; font-size: 2rem; text-align: center;">Достижения игрока</h3>
+            <h3 style="margin: 4rem 0 2rem; font-size: 2rem; text-align: center;">🏆 Достижения игрока</h3>
             <div class="achievements-grid" id="profileAchievements">
                 <!-- Achievements will be loaded here -->
             </div>
@@ -741,243 +979,18 @@
         <!-- Rating Section -->
         <section id="rating" class="section">
             <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с лучшими и поднимайтесь в топ</p>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с элитой и докажите свое мастерство</p>
             
             <div class="rating-leaderboard">
-                <h3 style="margin-bottom: 2rem; font-size: 1.8rem; text-align: center;">Топ-5 игроков SPORTCLATCH</h3>
+                <h3 style="margin-bottom: 2rem; font-size: 1.8rem; text-align: center;">🏅 Топ-5 игроков m1nkk shot</h3>
                 <div id="leaderboardList">
                     <!-- Leaderboard will be loaded here -->
                 </div>
             </div>
 
             <div class="card" style="margin-top: 3rem;">
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">Ваша позиция в рейтинге</h3>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">🎯 Ваша позиция в рейтинге</h3>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">#47</div>
-                        <div class="stat-label">Глобальный рейтинг</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">1,845</div>
-                        <div class="stat-label">ELO очки</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">+125</div>
-                        <div class="stat-label">За неделю</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">94%</div>
-                        <div class="stat-label">Процент прогресса</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>SPORTCLATCH</h3>
-                <p style="color: var(--text-light); line-height: 1.7; margin-top: 1rem;">Передовая платформа для киберспортсменов, объединяющая аналитику, сообщество и развитие навыков.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Разделы</h3>
-                <ul class="footer-links">
-                    <li><a href="#" onclick="showSection('home')">Главная</a></li>
-                    <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
-                    <li><a href="#" onclick="showSection('profiles')">Профили</a></li>
-                    <li><a href="#" onclick="showSection('rating')">Рейтинг</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Поддержка</h3>
-                <ul class="footer-links">
-                    <li><a href="#" onclick="showHelp()">Помощь</a></li>
-                    <li><a href="#" onclick="showDiscordBotInfo()">Discord сообщество</a></li>
-                    <li><a href="#">Контакты</a></li>
-                    <li><a href="#">Документация</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 SPORTCLATCH. Все права защищены. Сделано для киберспортивного сообщества.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Navigation
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show target section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Add active class to clicked nav link
-            event.target.classList.add('active');
-        }
-
-        // Stats functionality
-        function loadRealStats() {
-            const steamId = document.getElementById('steamIdInput').value.trim();
-            if (!steamId) {
-                alert('Пожалуйста, введите ваш Steam ID');
-                return;
-            }
-
-            // Simulate API call
-            setTimeout(() => {
-                const stats = generateRealisticStats();
-                displayStats(stats, false);
-            }, 1500);
-        }
-
-        function loadDemoStats() {
-            const stats = generateRealisticStats();
-            displayStats(stats, true);
-        }
-
-        function generateRealisticStats() {
-            return {
-                kd: (Math.random() * 1.5 + 0.8).toFixed(2),
-                wins: Math.floor(Math.random() * 800 + 200),
-                headshots: Math.floor(Math.random() * 4000 + 1000),
-                matches: Math.floor(Math.random() * 1200 + 400),
-                mvps: Math.floor(Math.random() * 1500 + 300),
-                damage: Math.floor(Math.random() * 5000000 + 2000000),
-                rank: ['Silver Elite', 'Gold Nova I', 'MG I', 'LE', 'Global Elite'][Math.floor(Math.random() * 5)]
-            };
-        }
-
-        function displayStats(stats, isDemo) {
-            const kdColor = stats.kd >= 1.2 ? 'var(--success)' : stats.kd >= 0.9 ? 'var(--warning)' : 'var(--error)';
-            
-            document.getElementById('statsResults').innerHTML = `
-                <div class="card">
-                    <h3>${isDemo ? 'Демо-статистика' : 'Ваша статистика CS2'}</h3>
-                    ${isDemo ? '<p style="color: var(--warning); margin-bottom: 2rem; padding: 1rem; background: rgba(234, 179, 8, 0.1); border-radius: 12px; border-left: 4px solid var(--warning);">Это демонстрационные данные. Введите реальный Steam ID для получения настоящей статистики.</p>' : ''}
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value" style="color: ${kdColor}">${stats.kd}</div>
-                            <div class="stat-label">K/D Ratio</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.wins}</div>
-                            <div class="stat-label">Побед</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.headshots}</div>
-                            <div class="stat-label">Хедшотов</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.matches}</div>
-                            <div class="stat-label">Матчей</div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 2rem; padding: 2rem; background: var(--background); border-radius: 16px; border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 1.5rem; color: var(--text);">Дополнительная информация</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
-                                <span style="color: var(--text-light);">Ранг:</span>
-                                <strong style="color: var(--primary)">${stats.rank}</strong>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
-                                <span style="color: var(--text-light);">MVP звезды:</span>
-                                <strong>${stats.mvps}</strong>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
-                                <span style="color: var(--text-light);">Нанесено урона:</span>
-                                <strong>${(stats.damage / 1000000).toFixed(1)}M</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Achievements System
-        const achievements = [
-            { id: 1, name: 'Первая кровь', description: 'Выиграть первый матч', icon: '🩸', progress: 100, max: 100, unlocked: true },
-            { id: 2, name: 'Снайпер', description: '1000 хедшотов', icon: '🎯', progress: 750, max: 1000, unlocked: false },
-            { id: 3, name: 'Богач', description: 'Заработать $1,000,000', icon: '💰', progress: 450000, max: 1000000, unlocked: false },
-            { id: 4, name: 'Неудержимый', description: '10 побед подряд', icon: '⚡', progress: 7, max: 10, unlocked: false },
-            { id: 5, name: 'Ветеран', description: '500 матчей', icon: '🎖️', progress: 324, max: 500, unlocked: false }
-        ];
-
-        function loadAchievements(containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = achievements.map(achievement => `
-                <div class="achievement-card ${achievement.unlocked ? 'unlocked' : ''}">
-                    <div class="achievement-icon">${achievement.icon}</div>
-                    <h4 style="margin-bottom: 0.5rem;">${achievement.name}</h4>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin: 0.5rem 0 1rem;">${achievement.description}</p>
-                    <div class="achievement-progress">
-                        <div class="achievement-progress-bar" style="width: ${(achievement.progress / achievement.max) * 100}%"></div>
-                    </div>
-                    <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
-                        ${achievement.progress}/${achievement.max}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Rating System
-        const leaderboard = [
-            { rank: 1, name: 'ProPlayer_CS2', elo: 2450, wins: 1247 },
-            { rank: 2, name: 'Ace_Shooter', elo: 2380, wins: 1156 },
-            { rank: 3, name: 'Headshot_King', elo: 2310, wins: 1098 },
-            { rank: 4, name: 'Tactical_Genius', elo: 2250, wins: 1034 },
-            { rank: 5, name: 'Clutch_Master', elo: 2190, wins: 987 }
-        ];
-
-        function loadLeaderboard() {
-            const container = document.getElementById('leaderboardList');
-            container.innerHTML = leaderboard.map(player => `
-                <div class="leaderboard-item">
-                    <div class="leaderboard-rank rank-${player.rank}">#${player.rank}</div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 1.1rem;">${player.name}</div>
-                        <div style="color: var(--text-light); font-size: 0.9rem;">${player.wins} побед • ${Math.floor(player.elo/100)}% эффективность</div>
-                    </div>
-                    <div style="color: var(--primary); font-weight: 800; font-size: 1.2rem;">${player.elo} ELO</div>
-                </div>
-            `).join('');
-        }
-
-        // Additional Functions
-        function showPremiumModal() {
-            alert('Премиум подписка SPORTCLATCH\n\nЭксклюзивные возможности:\n• Расширенная статистика\n• Приоритетная поддержка\n• Эксклюзивные темы\n• Ранний доступ к функциям\n\nСтоимость: $9.99/месяц');
-        }
-
-        function showDiscordBotInfo() {
-            alert('Discord сообщество SPORTCLATCH\n\nПрисоединяйтесь к нашему сообществу:\n• Обсуждайте тактики\n• Найдите тиммейтов\n• Участвуйте в турнирах\n• Получайте уведомления\n\nСсылка: discord.gg/sportclatch');
-        }
-
-        function showHelp() {
-            alert('Центр помощи SPORTCLATCH\n\nНужна помощь? Обратитесь в нашу службу поддержки через:\n• Email: support@sportclatch.com\n• Discord: #support канал\n• Документация: docs.sportclatch.com');
-        }
-
-        function steamLogin() {
-            alert('Авторизация через Steam\n\nВ реальной версии здесь будет безопасный вход через официальный Steam OpenID.');
-        }
-
-        // Initialize all systems
-        document.addEventListener('DOMContentLoaded', function() {
-            loadAchievements('homeAchievements');
-            loadAchievements('profileAchievements');
-            loadLeaderboard();
-            console.log('SPORTCLATCH platform loaded successfully!');
-        });
-    </script>
-</body>
-</html>
+                        <div class="stat-value">#24</div>
+                        <div class="stat-label">Глобальный рейти
