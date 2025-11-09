@@ -7,18 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
             --secondary: #f59e0b;
             --accent: #10b981;
-            --background: #0f0f1a;
-            --surface: #1a1a2e;
-            --card: #252547;
-            --text: #e2e8f0;
-            --text-light: #94a3b8;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --card: #334155;
+            --text: #f1f5f9;
+            --text-light: #cbd5e1;
+            --text-lighter: #94a3b8;
             --success: #22c55e;
             --warning: #eab308;
             --error: #ef4444;
+            --border: #475569;
         }
 
         * {
@@ -37,9 +40,9 @@
 
         /* Header */
         .navbar {
-            background: rgba(26, 26, 46, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid var(--border);
             position: fixed;
             top: 0;
             width: 100%;
@@ -57,17 +60,14 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .nav-links {
+        .nav-center {
             display: flex;
             gap: 2rem;
             align-items: center;
@@ -77,225 +77,41 @@
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .nav-link:hover, .nav-link.active {
             color: var(--text);
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(59, 130, 246, 0.1);
         }
 
         .nav-link.active::after {
             content: '';
             position: absolute;
             bottom: -2px;
-            left: 1rem;
-            right: 1rem;
+            left: 1.5rem;
+            right: 1.5rem;
             height: 2px;
             background: var(--primary);
             border-radius: 2px;
         }
 
-        /* Header Actions */
         .header-actions {
             display: flex;
             gap: 1rem;
             align-items: center;
         }
 
-        /* Menu Button */
-        .menu-btn {
-            background: none;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            width: 32px;
-            height: 32px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .menu-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .menu-line {
-            width: 18px;
-            height: 2px;
-            background: currentColor;
-            border-radius: 1px;
-            transition: all 0.3s ease;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 2rem;
-            background: var(--surface);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 12px;
-            padding: 1rem;
-            min-width: 200px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            display: none;
-            z-index: 1001;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: var(--text);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background: rgba(99, 102, 241, 0.2);
-            margin: 0.5rem 0;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-        }
-
-        .section {
-            display: none;
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(245, 158, 11, 0.05));
-            border-radius: 24px;
-            margin-bottom: 3rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .card p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
         /* Buttons */
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.875rem 1.75rem;
             border: none;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -307,47 +123,189 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-light);
             border: 1px solid var(--primary);
         }
 
         .btn-secondary:hover {
-            background: rgba(99, 102, 241, 0.2);
+            background: rgba(59, 130, 246, 0.2);
             transform: translateY(-2px);
         }
 
         .btn-premium {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background: linear-gradient(135deg, var(--secondary), #d97706);
             color: white;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .section {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.1) 0%, 
+                rgba(245, 158, 11, 0.05) 50%, 
+                rgba(16, 185, 129, 0.05) 100%);
+            border-radius: 24px;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         /* Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .stat-card {
             background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 16px;
             text-align: center;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
         }
 
         .stat-value {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -357,27 +315,37 @@
 
         .stat-label {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         /* Forms */
+        .form-container {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+        }
+
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--text);
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 1rem;
-            background: var(--surface);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 8px;
+            padding: 1.25rem;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             color: var(--text);
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -386,79 +354,87 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         /* Player Profiles */
         .profile-card {
             background: var(--surface);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 1rem 0;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
         }
 
         .profile-header {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .profile-avatar {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
+            border: 4px solid var(--primary);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
         }
 
         .profile-badges {
             display: flex;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
         .badge {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 0.25rem 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         /* Achievements */
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
         .achievement-card {
             background: var(--surface);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border);
             transition: all 0.3s ease;
         }
 
         .achievement-card.unlocked {
             border-color: var(--success);
-            background: rgba(34, 197, 94, 0.1);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
         }
 
         .achievement-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .achievement-progress {
-            background: var(--card);
-            height: 6px;
-            border-radius: 3px;
-            margin: 1rem 0;
+            background: var(--background);
+            height: 8px;
+            border-radius: 4px;
+            margin: 1.5rem 0;
             overflow: hidden;
         }
 
@@ -471,79 +447,62 @@
         /* Rating System */
         .rating-leaderboard {
             background: var(--surface);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
         }
 
         .leaderboard-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-item:hover {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 12px;
+        }
+
+        .leaderboard-item:last-child {
+            border-bottom: none;
         }
 
         .leaderboard-rank {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--primary);
-            min-width: 30px;
+            min-width: 40px;
         }
 
-        /* Premium Subscription */
-        .premium-banner {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .premium-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .premium-feature {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #f59e0b;
-        }
-
-        /* Theme Styles */
-        body.light-theme {
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --card: #f1f5f9;
-            --text: #1e293b;
-            --text-light: #64748b;
-        }
+        .rank-1 { color: gold; }
+        .rank-2 { color: silver; }
+        .rank-3 { color: #cd7f32; }
 
         /* Footer */
         .footer {
             background: var(--surface);
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
-            padding: 3rem 2rem;
-            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            margin-top: 6rem;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
         }
 
         .footer-section h3 {
             color: var(--text);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         .footer-links {
@@ -551,36 +510,71 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .footer-links a:hover {
             color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-lighter);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-center {
                 gap: 1rem;
             }
 
-            .nav-links {
-                gap: 1rem;
+            .nav-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .card-grid {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 1.1rem;
             }
 
             .btn-group {
@@ -590,7 +584,18 @@
 
             .btn {
                 width: 100%;
+                max-width: 280px;
                 justify-content: center;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
             }
         }
     </style>
@@ -600,44 +605,18 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <span>⚡</span>
                 SPORTCLATCH
+            </div>
+            <div class="nav-center">
+                <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
+                <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
+                <a href="#" class="nav-link" onclick="showSection('profiles')">Профили</a>
+                <a href="#" class="nav-link" onclick="showSection('rating')">Рейтинг</a>
             </div>
             <div class="header-actions">
                 <button class="btn btn-primary" onclick="steamLogin()">
                     Войти через Steam
                 </button>
-                <div class="menu-container">
-                    <button class="menu-btn" onclick="toggleMenu()">
-                        <div class="menu-line"></div>
-                        <div class="menu-line"></div>
-                        <div class="menu-line"></div>
-                    </button>
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <div class="dropdown-item" onclick="toggleTheme()">
-                            <span>🌓</span>
-                            Сменить тему
-                        </div>
-                        <div class="dropdown-item" onclick="showPremiumModal()">
-                            <span>⭐</span>
-                            Премиум подписка
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-item" onclick="showDiscordBotInfo()">
-                            <span>🤖</span>
-                            Discord бот
-                        </div>
-                        <div class="dropdown-item" onclick="showSettings()">
-                            <span>⚙️</span>
-                            Настройки
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-item" onclick="showHelp()">
-                            <span>❓</span>
-                            Помощь
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
@@ -647,42 +626,42 @@
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="hero">
-                <h1>Стань легендой киберспорта</h1>
-                <p>Продвинутая платформа для игроков CS2. Статистика, профили, рейтинг и многое другое в одном месте.</p>
+                <h1>Киберспорт нового поколения</h1>
+                <p>Откройте для себя передовую платформу для игроков CS2. Глубокая аналитика, профессиональные инструменты и сообщество чемпионов.</p>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="showSection('stats')">
-                        Моя статистика
+                        Анализ статистики
                     </button>
                     <button class="btn btn-secondary" onclick="showSection('profiles')">
-                        Профили
+                        Игровые профили
                     </button>
                     <button class="btn btn-premium" onclick="showPremiumModal()">
-                        Премиум подписка
+                        Премиум доступ
                     </button>
                 </div>
             </div>
 
             <div class="card-grid">
                 <div class="card">
-                    <div class="card-icon">📈</div>
-                    <h3>Детальная аналитика</h3>
-                    <p>Полная статистика ваших матчей, K/D ratio, винрейт и прогресс скилла с красивыми графиками</p>
+                    <div class="card-icon">📊</div>
+                    <h3>Продвинутая аналитика</h3>
+                    <p>Получите детальную статистику ваших матчей с искусственным интеллектом, который анализирует ваш стиль игры и дает персональные рекомендации</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">👥</div>
-                    <h3>Профили игроков</h3>
-                    <p>Просматривайте профили других игроков, их достижения и статистику</p>
+                    <h3>Профессиональные профили</h3>
+                    <p>Создайте уникальный игровой профиль с достижениями, историей матчей и подробной статистикой для привлечения спонсоров и команд</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🏅</div>
+                    <div class="card-icon">🏆</div>
                     <h3>Рейтинговая система</h3>
-                    <p>Соревнуйтесь с другими игроками и поднимайтесь в рейтинге</p>
+                    <p>Соревнуйтесь с игроками со всего мира в нашей системе ELO рейтинга. Поднимайтесь в топ и получайте эксклюзивные награды</p>
                 </div>
             </div>
 
             <!-- Achievements Preview -->
-            <div style="margin-top: 3rem;">
-                <h2 style="text-align: center; margin-bottom: 2rem;">Ваши достижения</h2>
+            <div style="margin-top: 4rem;">
+                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ваши достижения</h2>
                 <div class="achievements-grid" id="homeAchievements">
                     <!-- Achievements will be loaded here -->
                 </div>
@@ -691,13 +670,14 @@
 
         <!-- Stats Section -->
         <section id="stats" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Статистика CS2</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Получите полную картину вашего игрового прогресса</p>
             
-            <div class="card">
-                <h3 style="margin-bottom: 1.5rem;">Получить статистику</h3>
+            <div class="form-container">
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">Получить статистику</h3>
                 <div class="form-group">
                     <label class="form-label">Ваш Steam ID или профиль</label>
-                    <input type="text" class="form-input" placeholder="76561197960287930 или ссылка на профиль" id="steamIdInput">
+                    <input type="text" class="form-input" placeholder="Введите Steam ID (например: 76561197960287930)" id="steamIdInput">
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="loadRealStats()">
@@ -714,43 +694,45 @@
 
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Профили игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Игровые профили</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте профили лучших игроков и совершенствуйте свои навыки</p>
             
             <div class="profile-card">
                 <div class="profile-header">
-                    <img src="https://via.placeholder.com/80" alt="Аватар" class="profile-avatar">
-                    <div>
-                        <h3>ProPlayer_CS2</h3>
-                        <p style="color: var(--text-light);">Уровень 45 • Global Elite</p>
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face" alt="Аватар" class="profile-avatar">
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">ProPlayer_CS2</h3>
+                        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem;">Уровень 67 • Global Elite • 3 года в игре</p>
                         <div class="profile-badges">
-                            <span class="badge">Чемпион</span>
-                            <span class="badge">Профи</span>
+                            <span class="badge">Топ-100 мира</span>
+                            <span class="badge">Чемпион ESL</span>
                             <span class="badge">Снайпер</span>
+                            <span class="badge">Лидер</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">1.45</div>
+                        <div class="stat-value">1.67</div>
                         <div class="stat-label">K/D Ratio</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">1,247</div>
+                        <div class="stat-value">2,847</div>
                         <div class="stat-label">Побед</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">42%</div>
+                        <div class="stat-value">48%</div>
                         <div class="stat-label">Хедшоты</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">2,845</div>
+                        <div class="stat-value">3,452</div>
                         <div class="stat-label">MVP</div>
                     </div>
                 </div>
             </div>
 
-            <h3 style="margin: 2rem 0 1rem;">Достижения игрока</h3>
+            <h3 style="margin: 4rem 0 2rem; font-size: 2rem; text-align: center;">Достижения игрока</h3>
             <div class="achievements-grid" id="profileAchievements">
                 <!-- Achievements will be loaded here -->
             </div>
@@ -758,17 +740,18 @@
 
         <!-- Rating Section -->
         <section id="rating" class="section">
-            <h2 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Рейтинг игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с лучшими и поднимайтесь в топ</p>
             
             <div class="rating-leaderboard">
-                <h3 style="margin-bottom: 1.5rem;">Топ-10 игроков SPORTCLATCH</h3>
+                <h3 style="margin-bottom: 2rem; font-size: 1.8rem; text-align: center;">Топ-5 игроков SPORTCLATCH</h3>
                 <div id="leaderboardList">
                     <!-- Leaderboard will be loaded here -->
                 </div>
             </div>
 
-            <div class="card" style="margin-top: 2rem;">
-                <h3>Ваше место в рейтинге</h3>
+            <div class="card" style="margin-top: 3rem;">
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">Ваша позиция в рейтинге</h3>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value">#47</div>
@@ -782,49 +765,21 @@
                         <div class="stat-value">+125</div>
                         <div class="stat-label">За неделю</div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">Процент прогресса</div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Premium Modal -->
-    <div id="premiumModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="background: var(--surface); padding: 3rem; border-radius: 20px; max-width: 500px; text-align: center;">
-            <h2 style="margin-bottom: 1rem;">Премиум подписка</h2>
-            <p style="color: var(--text-light); margin-bottom: 2rem;">Получите эксклюзивные возможности и приоритетный доступ</p>
-            
-            <div class="premium-features">
-                <div class="premium-feature">
-                    <div style="font-size: 2rem;">📊</div>
-                    <h4>Расширенная статистика</h4>
-                </div>
-                <div class="premium-feature">
-                    <div style="font-size: 2rem;">🎨</div>
-                    <h4>Эксклюзивные темы</h4>
-                </div>
-                <div class="premium-feature">
-                    <div style="font-size: 2rem;">⚡</div>
-                    <h4>Приоритет в турнирах</h4>
-                </div>
-            </div>
-
-            <div style="margin: 2rem 0;">
-                <div style="font-size: 2.5rem; font-weight: 800; color: #f59e0b;">$9.99/мес</div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-premium" onclick="subscribePremium()">Оформить подписку</button>
-                <button class="btn btn-secondary" onclick="closePremiumModal()">Закрыть</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>SPORTCLATCH</h3>
-                <p style="color: var(--text-light);">Ведущая киберспортивная платформа для игроков CS2</p>
+                <p style="color: var(--text-light); line-height: 1.7; margin-top: 1rem;">Передовая платформа для киберспортсменов, объединяющая аналитику, сообщество и развитие навыков.</p>
             </div>
             <div class="footer-section">
                 <h3>Разделы</h3>
@@ -838,12 +793,15 @@
             <div class="footer-section">
                 <h3>Поддержка</h3>
                 <ul class="footer-links">
-                    <li><a href="#" onclick="showDiscordBotInfo()">Discord бот</a></li>
-                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#" onclick="showHelp()">Помощь</a></li>
+                    <li><a href="#" onclick="showDiscordBotInfo()">Discord сообщество</a></li>
                     <li><a href="#">Контакты</a></li>
                     <li><a href="#">Документация</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 SPORTCLATCH. Все права защищены. Сделано для киберспортивного сообщества.</p>
         </div>
     </footer>
 
@@ -855,35 +813,16 @@
                 section.classList.remove('active');
             });
             
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
             // Show target section
             document.getElementById(sectionId).classList.add('active');
-            closeMenu();
-        }
-
-        // Dropdown Menu
-        function toggleMenu() {
-            const menu = document.getElementById('dropdownMenu');
-            menu.classList.toggle('show');
-        }
-
-        function closeMenu() {
-            const menu = document.getElementById('dropdownMenu');
-            menu.classList.remove('show');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('dropdownMenu');
-            const menuBtn = document.querySelector('.menu-btn');
-            if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-                closeMenu();
-            }
-        });
-
-        // Theme Toggle
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            closeMenu();
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
         }
 
         // Stats functionality
@@ -923,8 +862,8 @@
             
             document.getElementById('statsResults').innerHTML = `
                 <div class="card">
-                    <h3>${isDemo ? 'Демо-статистика' : 'Ваша статистика'}</h3>
-                    ${isDemo ? '<p style="color: var(--warning); margin-bottom: 1rem;">Это демонстрационные данные. Введите реальный Steam ID для получения настоящей статистики.</p>' : ''}
+                    <h3>${isDemo ? 'Демо-статистика' : 'Ваша статистика CS2'}</h3>
+                    ${isDemo ? '<p style="color: var(--warning); margin-bottom: 2rem; padding: 1rem; background: rgba(234, 179, 8, 0.1); border-radius: 12px; border-left: 4px solid var(--warning);">Это демонстрационные данные. Введите реальный Steam ID для получения настоящей статистики.</p>' : ''}
                     
                     <div class="stats-grid">
                         <div class="stat-card">
@@ -945,18 +884,21 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--card); border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>Ранг:</span>
-                            <strong style="color: var(--primary)">${stats.rank}</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>MVP звезды:</span>
-                            <strong>${stats.mvps}</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Нанесено урона:</span>
-                            <strong>${(stats.damage / 1000000).toFixed(1)}M</strong>
+                    <div style="margin-top: 2rem; padding: 2rem; background: var(--background); border-radius: 16px; border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 1.5rem; color: var(--text);">Дополнительная информация</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
+                                <span style="color: var(--text-light);">Ранг:</span>
+                                <strong style="color: var(--primary)">${stats.rank}</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
+                                <span style="color: var(--text-light);">MVP звезды:</span>
+                                <strong>${stats.mvps}</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
+                                <span style="color: var(--text-light);">Нанесено урона:</span>
+                                <strong>${(stats.damage / 1000000).toFixed(1)}M</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -977,12 +919,12 @@
             container.innerHTML = achievements.map(achievement => `
                 <div class="achievement-card ${achievement.unlocked ? 'unlocked' : ''}">
                     <div class="achievement-icon">${achievement.icon}</div>
-                    <h4>${achievement.name}</h4>
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin: 0.5rem 0;">${achievement.description}</p>
+                    <h4 style="margin-bottom: 0.5rem;">${achievement.name}</h4>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin: 0.5rem 0 1rem;">${achievement.description}</p>
                     <div class="achievement-progress">
                         <div class="achievement-progress-bar" style="width: ${(achievement.progress / achievement.max) * 100}%"></div>
                     </div>
-                    <div style="font-size: 0.8rem; color: var(--text-light);">
+                    <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
                         ${achievement.progress}/${achievement.max}
                     </div>
                 </div>
@@ -1002,49 +944,31 @@
             const container = document.getElementById('leaderboardList');
             container.innerHTML = leaderboard.map(player => `
                 <div class="leaderboard-item">
-                    <div class="leaderboard-rank">#${player.rank}</div>
+                    <div class="leaderboard-rank rank-${player.rank}">#${player.rank}</div>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600;">${player.name}</div>
-                        <div style="color: var(--text-light); font-size: 0.8rem;">${player.wins} побед</div>
+                        <div style="font-weight: 700; font-size: 1.1rem;">${player.name}</div>
+                        <div style="color: var(--text-light); font-size: 0.9rem;">${player.wins} побед • ${Math.floor(player.elo/100)}% эффективность</div>
                     </div>
-                    <div style="color: var(--primary); font-weight: 700;">${player.elo} ELO</div>
+                    <div style="color: var(--primary); font-weight: 800; font-size: 1.2rem;">${player.elo} ELO</div>
                 </div>
             `).join('');
         }
 
-        // Premium Subscription
-        function showPremiumModal() {
-            document.getElementById('premiumModal').style.display = 'flex';
-            closeMenu();
-        }
-
-        function closePremiumModal() {
-            document.getElementById('premiumModal').style.display = 'none';
-        }
-
-        function subscribePremium() {
-            alert('Спасибо за оформление премиум подписки! В реальной версии здесь будет платежная система.');
-            closePremiumModal();
-        }
-
         // Additional Functions
-        function showDiscordBotInfo() {
-            alert('Discord бот SPORTCLATCH\n\nФункции:\n• Уведомления о матчах\n• Статистика в реальном времени\n• Быстрая регистрация на турниры\n\nСсылка для добавления: discord.gg/sportclatch');
-            closeMenu();
+        function showPremiumModal() {
+            alert('Премиум подписка SPORTCLATCH\n\nЭксклюзивные возможности:\n• Расширенная статистика\n• Приоритетная поддержка\n• Эксклюзивные темы\n• Ранний доступ к функциям\n\nСтоимость: $9.99/месяц');
         }
 
-        function showSettings() {
-            alert('Настройки платформы\n\nЗдесь можно настроить уведомления, приватность и другие параметры аккаунта.');
-            closeMenu();
+        function showDiscordBotInfo() {
+            alert('Discord сообщество SPORTCLATCH\n\nПрисоединяйтесь к нашему сообществу:\n• Обсуждайте тактики\n• Найдите тиммейтов\n• Участвуйте в турнирах\n• Получайте уведомления\n\nСсылка: discord.gg/sportclatch');
         }
 
         function showHelp() {
-            alert('Центр помощи SPORTCLATCH\n\nЕсли у вас возникли вопросы, обратитесь в нашу службу поддержки.');
-            closeMenu();
+            alert('Центр помощи SPORTCLATCH\n\nНужна помощь? Обратитесь в нашу службу поддержки через:\n• Email: support@sportclatch.com\n• Discord: #support канал\n• Документация: docs.sportclatch.com');
         }
 
         function steamLogin() {
-            alert('В реальной версии здесь будет переход на авторизацию через Steam');
+            alert('Авторизация через Steam\n\nВ реальной версии здесь будет безопасный вход через официальный Steam OpenID.');
         }
 
         // Initialize all systems
@@ -1052,7 +976,7 @@
             loadAchievements('homeAchievements');
             loadAchievements('profileAchievements');
             loadLeaderboard();
-            console.log('SPORTCLATCH loaded successfully!');
+            console.log('SPORTCLATCH platform loaded successfully!');
         });
     </script>
 </body>
