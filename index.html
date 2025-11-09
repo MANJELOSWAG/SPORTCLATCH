@@ -1,996 +1,308 @@
-Отлично! Создам стильный дизайн с эффектом стекла (glass morphism) и добавлю интересные фишки. Вот обновленный код:
-
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m1nkk shot - Киберспортивная платформа</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Стеклянный дизайн</title>
     <style>
-        :root {
-            --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
-            --secondary: #f59e0b;
-            --accent: #10b981;
-            --background: #0f0f23;
-            --surface: rgba(255, 255, 255, 0.1);
-            --card: rgba(255, 255, 255, 0.08);
-            --text: #ffffff;
-            --text-light: rgba(255, 255, 255, 0.8);
-            --text-lighter: rgba(255, 255, 255, 0.6);
-            --success: #22c55e;
-            --warning: #eab308;
-            --error: #ef4444;
-            --border: rgba(255, 255, 255, 0.2);
-            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
-        }
-
-        .floating-element:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-        }
-
-        /* Header */
-        .navbar {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Стили для стеклянного эффекта */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Шапка */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 15px 25px;
+            margin-bottom: 30px;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .logo-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            margin-left: 0.5rem;
-            vertical-align: super;
-            animation: pulse 2s infinite;
-        }
-
-        .nav-center {
+        /* Кнопка меню */
+        .menu-toggle {
             display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid transparent;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
-            box-shadow: var(--glow);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 1.5rem;
-            right: 1.5rem;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        /* Buttons with Glass Effect */
-        .btn {
-            padding: 0.875rem 1.75rem;
-            border: none;
-            border-radius: 15px;
-            font-weight: 600;
-            font-size: 0.95rem;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
+            z-index: 100;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
-            color: white;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-premium {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
-            color: white;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-            position: relative;
-        }
-
-        .section {
-            display: none;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section.active {
+        .menu-toggle span {
             display: block;
-            animation: fadeIn 0.5s ease;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 8rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: var(--glow);
+        /* Боковое меню */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            padding: 80px 30px 30px;
+            transition: right 0.4s ease;
+            z-index: 90;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            animation: float 8s ease-in-out infinite;
+        .sidebar.active {
+            right: 0;
         }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            line-height: 1.7;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        /* Live Stats Counter */
-        .live-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .live-stat {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            min-width: 150px;
-        }
-
-        .live-stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Cards with Glass Effect */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
+        .overlay {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-        }
-
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .stat-value {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Forms */
-        .form-container {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 2rem 0;
-            border: 1px solid var(--border);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .form-input {
             width: 100%;
-            padding: 1.25rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
-        }
-
-        /* Player Profiles */
-        .profile-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            border: 1px solid var(--border);
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
-
-        .profile-badges {
-            display: flex;
-            gap: 0.75rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Achievements */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .achievement-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .achievement-card.unlocked {
-            border-color: var(--success);
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-        }
-
-        .achievement-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .achievement-progress {
-            background: rgba(255, 255, 255, 0.1);
-            height: 8px;
-            border-radius: 4px;
-            margin: 1.5rem 0;
-            overflow: hidden;
-        }
-
-        .achievement-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 80;
         }
 
-        /* Rating System */
-        .rating-leaderboard {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 3rem 0;
-            border: 1px solid var(--border);
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .leaderboard-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-            border-radius: 15px;
-        }
-
-        .leaderboard-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(10px);
-        }
-
-        .leaderboard-item:last-child {
-            border-bottom: none;
-        }
-
-        .leaderboard-rank {
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--primary);
-            min-width: 40px;
-        }
-
-        .rank-1 { color: gold; text-shadow: 0 0 20px gold; }
-        .rank-2 { color: silver; text-shadow: 0 0 20px silver; }
-        .rank-3 { color: #cd7f32; text-shadow: 0 0 20px #cd7f32; }
-
-        /* Footer */
-        .footer {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border);
-            padding: 4rem 2rem 2rem;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 4rem;
-        }
-
-        .footer-section h3 {
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .footer-links {
+        .nav-links {
             list-style: none;
         }
 
-        .footer-links li {
-            margin-bottom: 0.75rem;
+        .nav-links li {
+            margin-bottom: 20px;
         }
 
-        .footer-links a {
-            color: var(--text-light);
+        .nav-links a {
+            color: white;
             text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 10px;
             transition: all 0.3s ease;
-            font-size: 1rem;
         }
 
-        .footer-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
             transform: translateX(5px);
         }
 
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-lighter);
+        /* Основной контент */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        /* Live Match Widget */
-        .live-match-widget {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid var(--border);
-            text-align: center;
+        .card {
+            padding: 25px;
+            transition: transform 0.3s ease;
         }
 
-        .match-teams {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        .team {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .team-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        .vs {
+        .card h2 {
+            margin-bottom: 15px;
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
         }
 
-        .match-score {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 1rem 0;
+        .card p {
+            line-height: 1.6;
+            opacity: 0.9;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .card-grid {
+        /* Кнопки */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .main-content {
                 grid-template-columns: 1fr;
             }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
+            
+            .buttons {
                 flex-direction: column;
-                gap: 1.5rem;
             }
-
-            .nav-center {
-                gap: 1rem;
-            }
-
-            .nav-link {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-
-            .live-stats {
-                gap: 1rem;
-            }
-
-            .live-stat {
-                min-width: 120px;
-                padding: 1.5rem;
+            
+            .sidebar {
+                width: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
+    <div class="container">
+        <header class="glass">
+            <div class="logo">GlassStyle</div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <div class="overlay" id="overlay"></div>
+
+        <nav class="sidebar glass" id="sidebar">
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Портфолио</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="card glass">
+                <h2>Стеклянный дизайн</h2>
+                <p>Современный стеклянный дизайн создает ощущение легкости и прозрачности. Эффект матового стекла достигается с помощью свойства backdrop-filter.</p>
+                <div class="buttons">
+                    <button class="btn btn-primary">Подробнее</button>
+                    <button class="btn">Демо</button>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h2>Адаптивный интерфейс</h2>
+                <p>Дизайн полностью адаптируется под различные размеры экранов. На мобильных устройствах элементы перестраиваются для удобного просмотра.</p>
+                <div class="buttons">
+                    <button class="btn btn-primary">Исследовать</button>
+                    <button class="btn">Тестировать</button>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h2>Интерактивные элементы</h2>
+                <p>Все кнопки и меню полностью функциональны. Боковое меню плавно появляется при нажатии на иконку с тремя полосками.</p>
+                <div class="buttons">
+                    <button class="btn btn-primary">Взаимодействовать</button>
+                    <button class="btn">Настройки</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="glass">
+            <p>© 2023 Стеклянный дизайн. Все права защищены.</p>
+        </footer>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                m1nkk shot
-                <span class="logo-badge">PRO</span>
-            </div>
-            <div class="nav-center">
-                <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
-                <a href="#" class="nav-link" onclick="showSection('stats')">Статистика</a>
-                <a href="#" class="nav-link" onclick="showSection('profiles')">Профили</a>
-                <a href="#" class="nav-link" onclick="showSection('rating')">Рейтинг</a>
-            </div>
-            <div class="header-actions">
-                <button class="btn btn-primary" onclick="steamLogin()">
-                    Войти через Steam
-                </button>
-            </div>
-        </div>
-    </nav>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Home Section -->
-        <section id="home" class="section active">
-            <div class="hero">
-                <h1>Точность в каждом выстреле</h1>
-                <p>Продвинутая аналитика для чемпионов CS2. Стань легендой с помощью искусственного интеллекта и профессиональных инструментов.</p>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="showSection('stats')">
-                        Анализ статистики
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSection('profiles')">
-                        Игровые профили
-                    </button>
-                    <button class="btn btn-premium" onclick="showPremiumModal()">
-                        Премиум доступ
-                    </button>
-                </div>
-            </div>
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
 
-            <!-- Live Stats -->
-            <div class="live-stats">
-                <div class="live-stat">
-                    <div class="live-stat-value" id="onlinePlayers">12,847</div>
-                    <div class="stat-label">Игроков онлайн</div>
-                </div>
-                <div class="live-stat">
-                    <div class="live-stat-value" id="matchesPlayed">3,452</div>
-                    <div class="stat-label">Матчей сегодня</div>
-                </div>
-                <div class="live-stat">
-                    <div class="live-stat-value" id="tournaments">47</div>
-                    <div class="stat-label">Активных турниров</div>
-                </div>
-            </div>
+        overlay.addEventListener('click', function() {
+            this.classList.remove('active');
+            sidebar.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
 
-            <!-- Live Match Widget -->
-            <div class="live-match-widget">
-                <h3 style="margin-bottom: 1.5rem; color: var(--primary);">⚡ LIVE МАТЧ</h3>
-                <div class="match-teams">
-                    <div class="team">
-                        <div class="team-logo" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">NKK</div>
-                        <div style="font-weight: 600;">m1nkk squad</div>
-                    </div>
-                    <div class="vs">VS</div>
-                    <div class="team">
-                        <div class="team-logo" style="background: linear-gradient(135deg, #f59e0b, #d97706);">ELT</div>
-                        <div style="font-weight: 600;">Elite Team</div>
-                    </div>
-                </div>
-                <div class="match-score">12 : 9</div>
-                <div style="color: var(--text-light);">de_dust2 • 15 раунд</div>
-                <div style="margin-top: 1rem; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 10px; display: inline-block;">
-                    🔴 LIVE трансляция
-                </div>
-            </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🎯</div>
-                    <h3>Умная аналитика</h3>
-                    <p>Искусственный интеллект анализирует каждый ваш выстрел и дает персональные рекомендации по улучшению навыков</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3>Мгновенные результаты</h3>
-                    <p>Получайте статистику в реальном времени с задержкой менее 1 секунды. Всегда будьте в курсе своего прогресса</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🌟</div>
-                    <h3>Элитное сообщество</h3>
-                    <p>Присоединяйтесь к топ-игрокам, участвуйте в эксклюзивных турнирах и получайте признание ваших навыков</p>
-                </div>
-            </div>
-
-            <!-- Achievements Preview -->
-            <div style="margin-top: 4rem;">
-                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ваши достижения</h2>
-                <div class="achievements-grid" id="homeAchievements">
-                    <!-- Achievements will be loaded here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section id="stats" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Точные данные для точных выстрелов</p>
-            
-            <div class="form-container">
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">🔍 Получить детальную статистику</h3>
-                <div class="form-group">
-                    <label class="form-label">Ваш Steam ID или профиль</label>
-                    <input type="text" class="form-input" placeholder="Введите Steam ID (например: 76561197960287930)" id="steamIdInput">
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="loadRealStats()">
-                        🚀 Загрузить статистику
-                    </button>
-                    <button class="btn btn-secondary" onclick="loadDemoStats()">
-                        🎮 Демо-режим
-                    </button>
-                </div>
-            </div>
-
-            <div id="statsResults" style="margin-top: 2rem;"></div>
-        </section>
-
-        <!-- Profiles Section -->
-        <section id="profiles" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Профили игроков</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте стиль лучших и совершенствуйтесь</p>
-            
-            <div class="profile-card">
-                <div class="profile-header">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face" alt="Аватар" class="profile-avatar">
-                    <div style="flex: 1;">
-                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">m1nkk_shot</h3>
-                        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem;">Уровень 89 • Global Elite • Основной снайпер</p>
-                        <div class="profile-badges">
-                            <span class="badge">Топ-50 мира</span>
-                            <span class="badge">Чемпион ESL</span>
-                            <span class="badge">Снайпер</span>
-                            <span class="badge">Неудержимый</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">2.1</div>
-                        <div class="stat-label">K/D Ratio</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">3,847</div>
-                        <div class="stat-label">Побед</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">52%</div>
-                        <div class="stat-label">Хедшоты</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">4,215</div>
-                        <div class="stat-label">MVP</div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 style="margin: 4rem 0 2rem; font-size: 2rem; text-align: center;">🏆 Достижения игрока</h3>
-            <div class="achievements-grid" id="profileAchievements">
-                <!-- Achievements will be loaded here -->
-            </div>
-        </section>
-
-        <!-- Rating Section -->
-        <section id="rating" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с элитой и докажите свое мастерство</p>
-            
-            <div class="rating-leaderboard">
-                <h3 style="margin-bottom: 2rem; font-size: 1.8rem; text-align: center;">🏅 Топ-5 игроков m1nkk shot</h3>
-                <div id="leaderboardList">
-                    <!-- Leaderboard will be loaded here -->
-                </div>
-            </div>
-
-            <div class="card" style="margin-top: 3rem;">
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">🎯 Ваша позиция в рейтинге</h3>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">#24</div>
-                        <div class="stat-label">Глобальный рейти
+        // Закрытие меню при клике на ссылку
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
