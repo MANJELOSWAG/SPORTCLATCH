@@ -7,40 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
-            --secondary: #f59e0b;
-            --accent: #10b981;
-            --background: #0f0f23;
-            --surface: rgba(255, 255, 255, 0.1);
-            --card: rgba(255, 255, 255, 0.08);
-            --text: #ffffff;
-            --text-light: rgba(255, 255, 255, 0.8);
-            --text-lighter: rgba(255, 255, 255, 0.6);
-            --success: #22c55e;
-            --warning: #eab308;
-            --error: #ef4444;
-            --border: rgba(255, 255, 255, 0.2);
-            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
-        }
-
-        .light-theme {
             --primary: #3b82f6;
             --primary-dark: #2563eb;
             --primary-light: #60a5fa;
             --secondary: #64748b;
             --accent: #10b981;
-            --background: #f8fafc;
-            --surface: rgba(0, 0, 0, 0.05);
-            --card: rgba(0, 0, 0, 0.08);
-            --text: #0f172a;
-            --text-light: rgba(15, 23, 42, 0.8);
-            --text-lighter: rgba(15, 23, 42, 0.6);
+            --background: #0f172a;
+            --surface: rgba(255, 255, 255, 0.05);
+            --card: rgba(255, 255, 255, 0.08);
+            --text: #f8fafc;
+            --text-light: rgba(248, 250, 252, 0.8);
+            --text-lighter: rgba(248, 250, 252, 0.6);
             --success: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
-            --border: rgba(0, 0, 0, 0.1);
+            --border: rgba(255, 255, 255, 0.1);
             --glow: 0 0 30px rgba(59, 130, 246, 0.2);
         }
 
@@ -52,16 +33,11 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--background) 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
-            transition: all 0.3s ease;
-        }
-
-        .light-theme body {
-            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--card) 100%);
         }
 
         /* Animated Background */
@@ -110,7 +86,7 @@
 
         /* Header */
         .navbar {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             position: fixed;
@@ -118,11 +94,6 @@
             width: 100%;
             z-index: 1000;
             padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .light-theme .navbar {
-            background: rgba(248, 250, 252, 0.8);
         }
 
         .nav-container {
@@ -137,22 +108,13 @@
         .logo {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
-
-        .light-theme .logo {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text);
             text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
         .logo-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: white;
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
@@ -181,19 +143,11 @@
             border: 1px solid transparent;
         }
 
-        .light-theme .nav-link {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
         .nav-link:hover, .nav-link.active {
             color: var(--text);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--border);
             box-shadow: var(--glow);
-        }
-
-        .light-theme .nav-link:hover, .light-theme .nav-link.active {
-            background: rgba(0, 0, 0, 0.1);
         }
 
         .nav-link.active::after {
@@ -203,12 +157,8 @@
             left: 1.5rem;
             right: 1.5rem;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .light-theme .nav-link.active::after {
             background: var(--primary);
+            border-radius: 2px;
         }
 
         .header-actions {
@@ -237,16 +187,8 @@
             transition: all 0.3s ease;
         }
 
-        .light-theme .burger-btn {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         .burger-btn:hover {
             background: rgba(255, 255, 255, 0.15);
-        }
-
-        .light-theme .burger-btn:hover {
-            background: rgba(0, 0, 0, 0.15);
         }
 
         .burger-line {
@@ -260,7 +202,7 @@
             position: absolute;
             top: 50px;
             right: 0;
-            background: rgba(15, 15, 35, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 15px;
@@ -270,10 +212,6 @@
             flex-direction: column;
             gap: 0.5rem;
             z-index: 1001;
-        }
-
-        .light-theme .burger-dropdown {
-            background: rgba(248, 250, 252, 0.95);
         }
 
         .burger-dropdown.active {
@@ -293,17 +231,9 @@
             gap: 0.75rem;
         }
 
-        .light-theme .burger-item {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
         .burger-item:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--border);
-        }
-
-        .light-theme .burger-item:hover {
-            background: rgba(0, 0, 0, 0.1);
         }
 
         .burger-icon {
@@ -348,24 +278,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
-            color: white;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-        }
-
-        .light-theme .btn-primary {
             background: rgba(59, 130, 246, 0.2);
+            color: white;
             border: 1px solid rgba(59, 130, 246, 0.3);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
-        }
-
-        .light-theme .btn-primary:hover {
             box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
         }
 
@@ -375,39 +295,21 @@
             border: 1px solid var(--border);
         }
 
-        .light-theme .btn-secondary {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
         }
 
-        .light-theme .btn-secondary:hover {
-            background: rgba(0, 0, 0, 0.15);
-        }
-
         .btn-premium {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
-            color: white;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-        }
-
-        .light-theme .btn-premium {
             background: rgba(16, 185, 129, 0.2);
+            color: white;
             border: 1px solid rgba(16, 185, 129, 0.3);
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
         }
 
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
-        }
-
-        .light-theme .btn-premium:hover {
             box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
         }
 
@@ -459,10 +361,6 @@
             box-shadow: var(--glow);
         }
 
-        .light-theme .hero {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -470,30 +368,16 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .light-theme .hero::before {
             background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
         }
 
         .hero h1 {
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text);
             line-height: 1.1;
-            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
-        }
-
-        .light-theme .hero h1 {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
         }
 
         .hero p {
@@ -531,23 +415,11 @@
             min-width: 150px;
         }
 
-        .light-theme .live-stat {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
         .live-stat-value {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .light-theme .live-stat-value {
             color: var(--primary);
-            -webkit-text-fill-color: unset;
-            background: none;
+            margin-bottom: 0.5rem;
         }
 
         /* Cards with Glass Effect */
@@ -569,10 +441,6 @@
             overflow: hidden;
         }
 
-        .light-theme .card {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
         .card::before {
             content: '';
             position: absolute;
@@ -580,10 +448,6 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-        }
-
-        .light-theme .card::before {
             background: var(--primary);
         }
 
@@ -596,15 +460,7 @@
         .card-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .light-theme .card-icon {
             color: var(--primary);
-            -webkit-text-fill-color: unset;
-            background: none;
         }
 
         .card h3 {
@@ -638,10 +494,6 @@
             transition: all 0.3s ease;
         }
 
-        .light-theme .stat-card {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
         .stat-card:hover {
             border-color: var(--primary);
             transform: translateY(-5px);
@@ -651,16 +503,8 @@
         .stat-value {
             font-size: 2.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .light-theme .stat-value {
             color: var(--primary);
-            -webkit-text-fill-color: unset;
-            background: none;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
@@ -677,10 +521,6 @@
             padding: 3rem;
             margin: 2rem 0;
             border: 1px solid var(--border);
-        }
-
-        .light-theme .form-container {
-            background: rgba(0, 0, 0, 0.08);
         }
 
         .form-group {
@@ -707,17 +547,9 @@
             backdrop-filter: blur(10px);
         }
 
-        .light-theme .form-input {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
-        }
-
-        .light-theme .form-input:focus {
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
@@ -729,10 +561,6 @@
             padding: 2.5rem;
             margin: 2rem 0;
             border: 1px solid var(--border);
-        }
-
-        .light-theme .profile-card {
-            background: rgba(0, 0, 0, 0.08);
         }
 
         .profile-header {
@@ -747,10 +575,6 @@
             height: 100px;
             border-radius: 50%;
             border: 4px solid var(--primary);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
-
-        .light-theme .profile-avatar {
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
@@ -762,17 +586,12 @@
         }
 
         .badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-        }
-
-        .light-theme .badge {
-            background: var(--primary);
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
@@ -801,16 +620,8 @@
             overflow: hidden;
         }
 
-        .light-theme .achievement-card {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
         .achievement-card.unlocked {
             border-color: var(--success);
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
-        }
-
-        .light-theme .achievement-card.unlocked {
             background: rgba(16, 185, 129, 0.1);
         }
 
@@ -823,15 +634,7 @@
         .achievement-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .light-theme .achievement-icon {
             color: var(--primary);
-            -webkit-text-fill-color: unset;
-            background: none;
         }
 
         .achievement-progress {
@@ -842,18 +645,10 @@
             overflow: hidden;
         }
 
-        .light-theme .achievement-progress {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         .achievement-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-
-        .light-theme .achievement-progress-bar {
             background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         /* Rating System */
@@ -864,10 +659,6 @@
             padding: 3rem;
             margin: 3rem 0;
             border: 1px solid var(--border);
-        }
-
-        .light-theme .rating-leaderboard {
-            background: rgba(0, 0, 0, 0.08);
         }
 
         .leaderboard-item {
@@ -883,10 +674,6 @@
         .leaderboard-item:hover {
             background: rgba(255, 255, 255, 0.05);
             transform: translateX(10px);
-        }
-
-        .light-theme .leaderboard-item:hover {
-            background: rgba(0, 0, 0, 0.05);
         }
 
         .leaderboard-item:last-child {
@@ -911,10 +698,6 @@
             border-top: 1px solid var(--border);
             padding: 4rem 2rem 2rem;
             margin-top: 6rem;
-        }
-
-        .light-theme .footer {
-            background: rgba(0, 0, 0, 0.05);
         }
 
         .footer-content {
@@ -960,27 +743,6 @@
             color: var(--text-lighter);
         }
 
-        /* Faceit Connect Section */
-        .faceit-connect {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 3rem 0;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .light-theme .faceit-connect {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        .faceit-logo {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: #ff5500;
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 {
@@ -1000,8 +762,6 @@
 
             .nav-center {
                 gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
             }
 
             .nav-link {
@@ -1050,41 +810,6 @@
                 min-width: 120px;
                 padding: 1.5rem;
             }
-
-            .burger-dropdown {
-                position: fixed;
-                top: 80px;
-                right: 10px;
-                left: 10px;
-                width: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
-            
-            .live-stat {
-                min-width: 100px;
-                padding: 1rem;
-            }
-            
-            .live-stat-value {
-                font-size: 2rem;
-            }
-            
-            .form-container {
-                padding: 1.5rem;
-            }
         }
     </style>
 </head>
@@ -1122,7 +847,7 @@
                     <div class="burger-dropdown" id="burgerDropdown">
                         <div class="burger-item" onclick="toggleTheme()">
                             <div class="burger-icon">🌙</div>
-                            Переключить тему
+                            Светлая тема
                         </div>
                         <div class="burger-item" onclick="showPremiumModal()">
                             <div class="burger-icon">⭐</div>
@@ -1147,11 +872,17 @@
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="hero">
-                <h1>m1nkk shot</h1>
-                <p>Лучшая платформа для анализа статистики CS2. Отслеживайте свой прогресс, сравнивайте с другими игроками и улучшайте свои навыки.</p>
+                <h1>Точность в каждом выстреле</h1>
+                <p>Продвинутая аналитика для чемпионов CS2. Стань легендой с помощью искусственного интеллекта и профессиональных инструментов.</p>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="connectFaceit()">
-                        Привязать Faceit
+                    <button class="btn btn-primary" onclick="showSection('stats')">
+                        Анализ статистики
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('profiles')">
+                        Игровые профили
+                    </button>
+                    <button class="btn btn-premium" onclick="showPremiumModal()">
+                        Премиум доступ
                     </button>
                 </div>
             </div>
@@ -1172,40 +903,36 @@
                 </div>
             </div>
 
-            <!-- Faceit Connect Section -->
-            <div class="faceit-connect">
-                <div class="faceit-logo">FACEIT</div>
-                <h3 style="margin-bottom: 1.5rem;">Привяжите свой аккаунт Faceit</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Получите доступ к расширенной статистике, рейтингу ELO и детальной аналитике ваших матчей на платформе Faceit.
-                </p>
-                <button class="btn btn-primary" onclick="connectFaceit()">
-                    Привязать Faceit аккаунт
-                </button>
-            </div>
-
             <div class="card-grid">
                 <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Детальная статистика</h3>
-                    <p>Полный анализ ваших матчей, K/D ratio, точность стрельбы и другие важные метрики для улучшения игры</p>
+                    <div class="card-icon">🎯</div>
+                    <h3>Умная аналитика</h3>
+                    <p>Искусственный интеллект анализирует каждый ваш выстрел и дает персональные рекомендации по улучшению навыков</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">⚡</div>
-                    <h3>Рейтинг ELO</h3>
-                    <p>Отслеживайте свой прогресс в рейтинговой системе и сравнивайте свои показатели с другими игроками</p>
+                    <h3>Мгновенные результаты</h3>
+                    <p>Получайте статистику в реальном времени с задержкой менее 1 секунды. Всегда будьте в курсе своего прогресса</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🏆</div>
-                    <h3>Сравнение с проами</h3>
-                    <p>Анализируйте свою игру в сравнении с профессиональными игроками и узнавайте, где можно улучшиться</p>
+                    <div class="card-icon">🌟</div>
+                    <h3>Элитное сообщество</h3>
+                    <p>Присоединяйтесь к топ-игрокам, участвуйте в эксклюзивных турнирах и получайте признание ваших навыков</p>
+                </div>
+            </div>
+
+            <!-- Achievements Preview -->
+            <div style="margin-top: 4rem;">
+                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--text);">Ваши достижения</h2>
+                <div class="achievements-grid" id="homeAchievements">
+                    <!-- Achievements will be loaded here -->
                 </div>
             </div>
         </section>
 
         <!-- Stats Section -->
         <section id="stats" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Анализ статистики</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Точные данные для точных выстрелов</p>
             
             <div class="form-container">
@@ -1229,7 +956,7 @@
 
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Профили игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Профили игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте стиль лучших и совершенствуйтесь</p>
             
             <div class="profile-card">
@@ -1273,7 +1000,7 @@
 
         <!-- Rating Section -->
         <section id="rating" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Рейтинг игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с элитой и докажите свое мастерство</p>
             
             <div class="rating-leaderboard">
@@ -1399,20 +1126,10 @@
             document.getElementById('burgerDropdown').classList.remove('active');
         }
 
-        // Theme toggle
+        // Theme toggle simulation
         function toggleTheme() {
-            document.body.classList.toggle('light-theme');
+            alert('Переключение на светлую тему...');
             document.getElementById('burgerDropdown').classList.remove('active');
-            
-            // Save theme preference
-            const isLightTheme = document.body.classList.contains('light-theme');
-            localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
-        }
-
-        // Faceit connect function
-        function connectFaceit() {
-            alert('Перенаправление на страницу авторизации Faceit...');
-            // In a real implementation, this would redirect to Faceit OAuth
         }
 
         // Stats loading simulation
@@ -1547,15 +1264,6 @@
             animateCounter('onlinePlayers', 12847, 1500);
             animateCounter('matchesPlayed', 3452, 2000);
             animateCounter('tournaments', 47, 1000);
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-theme');
-            }
-            
-            // Start online counter update
-            startOnlineCounter();
         });
 
         function animateCounter(elementId, target, duration) {
@@ -1572,23 +1280,6 @@
                 }
                 element.textContent = Math.floor(current).toLocaleString();
             }, 16);
-        }
-
-        // Online counter update every 13 seconds
-        function startOnlineCounter() {
-            setInterval(() => {
-                const onlineElement = document.getElementById('onlinePlayers');
-                const currentValue = parseInt(onlineElement.textContent.replace(/,/g, ''));
-                
-                // Random change between -500 and +500
-                const change = Math.floor(Math.random() * 1000) - 500;
-                let newValue = currentValue + change;
-                
-                // Ensure value doesn't go below 10000
-                if (newValue < 10000) newValue = 10000;
-                
-                onlineElement.textContent = newValue.toLocaleString();
-            }, 13000); // 13 seconds
         }
     </script>
 </body>
