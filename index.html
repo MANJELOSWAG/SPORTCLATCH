@@ -7,22 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
-            --secondary: #f59e0b;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --secondary: #64748b;
             --accent: #10b981;
-            --background: #0f0f23;
-            --surface: rgba(255, 255, 255, 0.1);
+            --background: #0f172a;
+            --surface: rgba(255, 255, 255, 0.05);
             --card: rgba(255, 255, 255, 0.08);
-            --text: #ffffff;
-            --text-light: rgba(255, 255, 255, 0.8);
-            --text-lighter: rgba(255, 255, 255, 0.6);
-            --success: #22c55e;
-            --warning: #eab308;
+            --text: #f8fafc;
+            --text-light: rgba(248, 250, 252, 0.8);
+            --text-lighter: rgba(248, 250, 252, 0.6);
+            --success: #10b981;
+            --warning: #f59e0b;
             --error: #ef4444;
-            --border: rgba(255, 255, 255, 0.2);
-            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+            --glow: 0 0 30px rgba(59, 130, 246, 0.2);
         }
 
         * {
@@ -33,7 +33,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -86,7 +86,7 @@
 
         /* Header */
         .navbar {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             position: fixed;
@@ -108,15 +108,13 @@
         .logo {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            color: var(--text);
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
         .logo-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: white;
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
@@ -159,7 +157,7 @@
             left: 1.5rem;
             right: 1.5rem;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--primary);
             border-radius: 2px;
         }
 
@@ -203,15 +201,15 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
+            background: rgba(59, 130, 246, 0.2);
             color: white;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
         }
 
         .btn-secondary {
@@ -227,15 +225,15 @@
         }
 
         .btn-premium {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
+            background: rgba(16, 185, 129, 0.2);
             color: white;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
         }
 
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
         }
 
         /* Main Content */
@@ -293,7 +291,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
         }
 
@@ -301,11 +299,8 @@
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text);
             line-height: 1.1;
-            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
         }
 
         .hero p {
@@ -346,9 +341,7 @@
         .live-stat-value {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
@@ -378,7 +371,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background: var(--primary);
         }
 
         .card:hover {
@@ -390,9 +383,7 @@
         .card-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
 
         .card h3 {
@@ -435,9 +426,7 @@
         .stat-value {
             font-size: 2.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
@@ -484,7 +473,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
         /* Player Profiles */
@@ -509,7 +498,7 @@
             height: 100px;
             border-radius: 50%;
             border: 4px solid var(--primary);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
         .profile-badges {
@@ -520,13 +509,13 @@
         }
 
         .badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         /* Achievements */
@@ -551,7 +540,7 @@
 
         .achievement-card.unlocked {
             border-color: var(--success);
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+            background: rgba(16, 185, 129, 0.1);
         }
 
         .achievement-card:hover {
@@ -563,6 +552,7 @@
         .achievement-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         .achievement-progress {
@@ -575,7 +565,7 @@
 
         .achievement-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--primary);
             transition: width 0.3s ease;
         }
 
@@ -860,18 +850,18 @@
                 <h3 style="margin-bottom: 1.5rem; color: var(--primary);">⚡ LIVE МАТЧ</h3>
                 <div class="match-teams">
                     <div class="team">
-                        <div class="team-logo" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">NKK</div>
+                        <div class="team-logo" style="background: var(--primary);">NKK</div>
                         <div style="font-weight: 600;">m1nkk squad</div>
                     </div>
                     <div class="vs">VS</div>
                     <div class="team">
-                        <div class="team-logo" style="background: linear-gradient(135deg, #f59e0b, #d97706);">ELT</div>
+                        <div class="team-logo" style="background: var(--secondary);">ELT</div>
                         <div style="font-weight: 600;">Elite Team</div>
                     </div>
                 </div>
                 <div class="match-score">12 : 9</div>
                 <div style="color: var(--text-light);">de_dust2 • 15 раунд</div>
-                <div style="margin-top: 1rem; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 10px; display: inline-block;">
+                <div style="margin-top: 1rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.2); border-radius: 10px; display: inline-block;">
                     🔴 LIVE трансляция
                 </div>
             </div>
@@ -896,7 +886,7 @@
 
             <!-- Achievements Preview -->
             <div style="margin-top: 4rem;">
-                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ваши достижения</h2>
+                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--text);">Ваши достижения</h2>
                 <div class="achievements-grid" id="homeAchievements">
                     <!-- Achievements will be loaded here -->
                 </div>
@@ -905,7 +895,7 @@
 
         <!-- Stats Section -->
         <section id="stats" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Анализ статистики</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Точные данные для точных выстрелов</p>
             
             <div class="form-container">
@@ -929,7 +919,7 @@
 
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Профили игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Профили игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте стиль лучших и совершенствуйтесь</p>
             
             <div class="profile-card">
@@ -975,7 +965,7 @@
 
         <!-- Rating Section -->
         <section id="rating" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Рейтинг игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с элитой и докажите свое мастерство</p>
             
             <div class="rating-leaderboard">
@@ -990,4 +980,249 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value">#24</div>
-                        <div class="stat-label">Глобальный рейти
+                        <div class="stat-label">Глобальный рейтинг</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2,847</div>
+                        <div class="stat-label">Очки рейтинга</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">#3</div>
+                        <div class="stat-label">В вашем регионе</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">+12</div>
+                        <div class="stat-label">Изменение за день</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>m1nkk shot</h3>
+                <p style="color: var(--text-light); line-height: 1.7;">Продвинутая киберспортивная платформа для анализа и улучшения игровых навыков в CS2.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showSection('home')">Главная</a></li>
+                    <li><a href="#" onclick="showSection('stats')">Статистика</a></li>
+                    <li><a href="#" onclick="showSection('profiles')">Профили</a></li>
+                    <li><a href="#" onclick="showSection('rating')">Рейтинг</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Сообщить о проблеме</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 m1nkk shot. Все права защищены.
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        // Steam login simulation
+        function steamLogin() {
+            alert('Перенаправление на страницу авторизации Steam...');
+        }
+
+        // Premium modal simulation
+        function showPremiumModal() {
+            alert('Премиум доступ предоставляет расширенную аналитику, эксклюзивные турниры и приоритетную поддержку!');
+        }
+
+        // Stats loading simulation
+        function loadRealStats() {
+            const steamId = document.getElementById('steamIdInput').value;
+            if (!steamId) {
+                alert('Пожалуйста, введите ваш Steam ID');
+                return;
+            }
+            
+            document.getElementById('statsResults').innerHTML = `
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">📊 Статистика игрока</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">1.8</div>
+                            <div class="stat-label">K/D Ratio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">42%</div>
+                            <div class="stat-label">Хедшоты</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1,245</div>
+                            <div class="stat-label">Побед</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">78%</div>
+                            <div class="stat-label">Win Rate</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">Рекомендации по улучшению:</h4>
+                        <ul style="color: var(--text-light); line-height: 1.7; padding-left: 1.5rem;">
+                            <li>Улучшите точность стрельбы в движении</li>
+                            <li>Практикуйте гранатометание на карте Mirage</li>
+                            <li>Увеличьте процент хедшотов с AWP до 45%</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadDemoStats() {
+            document.getElementById('statsResults').innerHTML = `
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">🎮 Демо-статистика (m1nkk_shot)</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">2.1</div>
+                            <div class="stat-label">K/D Ratio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">52%</div>
+                            <div class="stat-label">Хедшоты</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">3,847</div>
+                            <div class="stat-label">Побед</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">84%</div>
+                            <div class="stat-label">Win Rate</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">Сильные стороны:</h4>
+                        <ul style="color: var(--text-light); line-height: 1.7; padding-left: 1.5rem;">
+                            <li>Исключительная точность снайперской стрельбы</li>
+                            <li>Эффективное использование тактических гранат</li>
+                            <li>Отличное позиционирование на карте</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize achievements and leaderboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Home achievements
+            const homeAchievements = [
+                { icon: '🎯', title: 'Снайпер', desc: '1000 хедшотов с AWP', progress: 100 },
+                { icon: '⚡', title: 'Быстрая реакция', desc: 'Победа в 50 дуэлях', progress: 80 },
+                { icon: '🏆', title: 'Победитель турнира', desc: 'Выиграть 3 турнира', progress: 33 }
+            ];
+            
+            const homeAchievementsHTML = homeAchievements.map(achievement => `
+                <div class="achievement-card ${achievement.progress === 100 ? 'unlocked' : ''}">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <h4>${achievement.title}</h4>
+                    <p>${achievement.desc}</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-bar" style="width: ${achievement.progress}%"></div>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">${achievement.progress}% выполнено</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('homeAchievements').innerHTML = homeAchievementsHTML;
+            
+            // Profile achievements
+            const profileAchievements = [
+                { icon: '👑', title: 'Global Elite', desc: 'Достичь высшего ранга', progress: 100 },
+                { icon: '🎖️', title: 'Ветеран', desc: '1000 часов игры', progress: 100 },
+                { icon: '💣', title: 'Гренадер', desc: '500 убийств гранатами', progress: 75 },
+                { icon: '🔫', title: 'Оружейник', desc: 'Использовать все виды оружия', progress: 90 }
+            ];
+            
+            const profileAchievementsHTML = profileAchievements.map(achievement => `
+                <div class="achievement-card ${achievement.progress === 100 ? 'unlocked' : ''}">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <h4>${achievement.title}</h4>
+                    <p>${achievement.desc}</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-bar" style="width: ${achievement.progress}%"></div>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">${achievement.progress}% выполнено</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('profileAchievements').innerHTML = profileAchievementsHTML;
+            
+            // Leaderboard
+            const leaderboard = [
+                { rank: 1, name: 'm1nkk_shot', rating: 3245 },
+                { rank: 2, name: 's1mple_god', rating: 3120 },
+                { rank: 3, name: 'zywoo_aim', rating: 2987 },
+                { rank: 4, name: 'niko_flick', rating: 2856 },
+                { rank: 5, name: 'device_snipe', rating: 2743 }
+            ];
+            
+            const leaderboardHTML = leaderboard.map(player => `
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank rank-${player.rank}">#${player.rank}</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.2rem;">${player.name}</div>
+                        <div style="color: var(--text-light);">Рейтинг: ${player.rating}</div>
+                    </div>
+                    <div class="badge">Топ-${player.rank}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('leaderboardList').innerHTML = leaderboardHTML;
+            
+            // Animate live stats
+            animateCounter('onlinePlayers', 12847, 1500);
+            animateCounter('matchesPlayed', 3452, 2000);
+            animateCounter('tournaments', 47, 1000);
+        });
+
+        function animateCounter(elementId, target, duration) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+    </script>
+</body>
+</html>
