@@ -7,22 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --primary-light: #60a5fa;
-            --secondary: #64748b;
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
+            --secondary: #f59e0b;
             --accent: #10b981;
-            --background: #0f172a;
-            --surface: rgba(255, 255, 255, 0.05);
+            --background: #0f0f23;
+            --surface: rgba(255, 255, 255, 0.1);
             --card: rgba(255, 255, 255, 0.08);
-            --text: #f8fafc;
-            --text-light: rgba(248, 250, 252, 0.8);
-            --text-lighter: rgba(248, 250, 252, 0.6);
-            --success: #10b981;
-            --warning: #f59e0b;
+            --text: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.8);
+            --text-lighter: rgba(255, 255, 255, 0.6);
+            --success: #22c55e;
+            --warning: #eab308;
             --error: #ef4444;
-            --border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 30px rgba(59, 130, 246, 0.2);
+            --border: rgba(255, 255, 255, 0.2);
+            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
         }
 
         .light-theme {
@@ -52,12 +52,16 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--card) 100%);
+            background: linear-gradient(135deg, var(--background) 0%, #1a1a2e 50%, #16213e 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
             transition: all 0.3s ease;
+        }
+
+        .light-theme body {
+            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--card) 100%);
         }
 
         /* Animated Background */
@@ -106,7 +110,7 @@
 
         /* Header */
         .navbar {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             position: fixed;
@@ -133,13 +137,22 @@
         .logo {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--text);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .light-theme .logo {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
         .logo-badge {
             display: inline-block;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
@@ -190,8 +203,12 @@
             left: 1.5rem;
             right: 1.5rem;
             height: 2px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
+        }
+
+        .light-theme .nav-link.active::after {
+            background: var(--primary);
         }
 
         .header-actions {
@@ -243,7 +260,7 @@
             position: absolute;
             top: 50px;
             right: 0;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 15, 35, 0.95);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 15px;
@@ -331,14 +348,24 @@
         }
 
         .btn-primary {
-            background: rgba(59, 130, 246, 0.2);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
             color: white;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .light-theme .btn-primary {
+            background: rgba(59, 130, 246, 0.2);
             border: 1px solid rgba(59, 130, 246, 0.3);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .light-theme .btn-primary:hover {
             box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
         }
 
@@ -360,6 +387,28 @@
 
         .light-theme .btn-secondary:hover {
             background: rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
+            color: white;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .light-theme .btn-premium {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+        }
+
+        .light-theme .btn-premium:hover {
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
         }
 
         /* Main Content */
@@ -421,16 +470,30 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
+        }
+
+        .light-theme .hero::before {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
         }
 
         .hero h1 {
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            color: var(--text);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 1.1;
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+        }
+
+        .light-theme .hero h1 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
         }
 
         .hero p {
@@ -475,8 +538,16 @@
         .live-stat-value {
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
+        }
+
+        .light-theme .live-stat-value {
+            color: var(--primary);
+            -webkit-text-fill-color: unset;
+            background: none;
         }
 
         /* Cards with Glass Effect */
@@ -509,6 +580,10 @@
             left: 0;
             right: 0;
             height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .light-theme .card::before {
             background: var(--primary);
         }
 
@@ -521,7 +596,15 @@
         .card-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-theme .card-icon {
             color: var(--primary);
+            -webkit-text-fill-color: unset;
+            background: none;
         }
 
         .card h3 {
@@ -568,8 +651,16 @@
         .stat-value {
             font-size: 2.8rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
+        }
+
+        .light-theme .stat-value {
+            color: var(--primary);
+            -webkit-text-fill-color: unset;
+            background: none;
         }
 
         .stat-label {
@@ -623,6 +714,10 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .light-theme .form-input:focus {
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
@@ -652,6 +747,10 @@
             height: 100px;
             border-radius: 50%;
             border: 4px solid var(--primary);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .light-theme .profile-avatar {
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
@@ -663,12 +762,17 @@
         }
 
         .badge {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .light-theme .badge {
+            background: var(--primary);
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
@@ -703,6 +807,10 @@
 
         .achievement-card.unlocked {
             border-color: var(--success);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+        }
+
+        .light-theme .achievement-card.unlocked {
             background: rgba(16, 185, 129, 0.1);
         }
 
@@ -715,7 +823,15 @@
         .achievement-icon {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-theme .achievement-icon {
             color: var(--primary);
+            -webkit-text-fill-color: unset;
+            background: none;
         }
 
         .achievement-progress {
@@ -732,8 +848,12 @@
 
         .achievement-progress-bar {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
+        }
+
+        .light-theme .achievement-progress-bar {
+            background: var(--primary);
         }
 
         /* Rating System */
@@ -1085,7 +1205,7 @@
 
         <!-- Stats Section -->
         <section id="stats" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Анализ статистики</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Анализ статистики</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Точные данные для точных выстрелов</p>
             
             <div class="form-container">
@@ -1109,7 +1229,7 @@
 
         <!-- Profiles Section -->
         <section id="profiles" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Профили игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Профили игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Изучайте стиль лучших и совершенствуйтесь</p>
             
             <div class="profile-card">
@@ -1153,7 +1273,7 @@
 
         <!-- Rating Section -->
         <section id="rating" class="section">
-            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; color: var(--text);">Рейтинг игроков</h2>
+            <h2 style="margin-bottom: 1rem; font-size: 3rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Рейтинг игроков</h2>
             <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 3rem;">Соревнуйтесь с элитой и докажите свое мастерство</p>
             
             <div class="rating-leaderboard">
