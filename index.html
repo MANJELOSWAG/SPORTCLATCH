@@ -25,6 +25,25 @@
             --glow: 0 0 30px rgba(59, 130, 246, 0.2);
         }
 
+        .light-theme {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --secondary: #64748b;
+            --accent: #10b981;
+            --background: #f8fafc;
+            --surface: rgba(0, 0, 0, 0.05);
+            --card: rgba(0, 0, 0, 0.08);
+            --text: #0f172a;
+            --text-light: rgba(15, 23, 42, 0.8);
+            --text-lighter: rgba(15, 23, 42, 0.6);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --border: rgba(0, 0, 0, 0.1);
+            --glow: 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -33,11 +52,12 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--card) 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
         /* Animated Background */
@@ -94,6 +114,11 @@
             width: 100%;
             z-index: 1000;
             padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .navbar {
+            background: rgba(248, 250, 252, 0.8);
         }
 
         .nav-container {
@@ -143,11 +168,19 @@
             border: 1px solid transparent;
         }
 
+        .light-theme .nav-link {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .nav-link:hover, .nav-link.active {
             color: var(--text);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--border);
             box-shadow: var(--glow);
+        }
+
+        .light-theme .nav-link:hover, .light-theme .nav-link.active {
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .nav-link.active::after {
@@ -187,8 +220,16 @@
             transition: all 0.3s ease;
         }
 
+        .light-theme .burger-btn {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .burger-btn:hover {
             background: rgba(255, 255, 255, 0.15);
+        }
+
+        .light-theme .burger-btn:hover {
+            background: rgba(0, 0, 0, 0.15);
         }
 
         .burger-line {
@@ -214,6 +255,10 @@
             z-index: 1001;
         }
 
+        .light-theme .burger-dropdown {
+            background: rgba(248, 250, 252, 0.95);
+        }
+
         .burger-dropdown.active {
             display: flex;
         }
@@ -231,9 +276,17 @@
             gap: 0.75rem;
         }
 
+        .light-theme .burger-item {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .burger-item:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--border);
+        }
+
+        .light-theme .burger-item:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .burger-icon {
@@ -295,22 +348,18 @@
             border: 1px solid var(--border);
         }
 
+        .light-theme .btn-secondary {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
         }
 
-        .btn-premium {
-            background: rgba(16, 185, 129, 0.2);
-            color: white;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        .light-theme .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.15);
         }
 
         /* Main Content */
@@ -359,6 +408,10 @@
             overflow: hidden;
             border: 1px solid var(--border);
             box-shadow: var(--glow);
+        }
+
+        .light-theme .hero {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .hero::before {
@@ -415,6 +468,10 @@
             min-width: 150px;
         }
 
+        .light-theme .live-stat {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .live-stat-value {
             font-size: 2.5rem;
             font-weight: 800;
@@ -439,6 +496,10 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+        }
+
+        .light-theme .card {
+            background: rgba(0, 0, 0, 0.08);
         }
 
         .card::before {
@@ -494,6 +555,10 @@
             transition: all 0.3s ease;
         }
 
+        .light-theme .stat-card {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
         .stat-card:hover {
             border-color: var(--primary);
             transform: translateY(-5px);
@@ -523,6 +588,10 @@
             border: 1px solid var(--border);
         }
 
+        .light-theme .form-container {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
         .form-group {
             margin-bottom: 2rem;
         }
@@ -547,6 +616,10 @@
             backdrop-filter: blur(10px);
         }
 
+        .light-theme .form-input {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
@@ -561,6 +634,10 @@
             padding: 2.5rem;
             margin: 2rem 0;
             border: 1px solid var(--border);
+        }
+
+        .light-theme .profile-card {
+            background: rgba(0, 0, 0, 0.08);
         }
 
         .profile-header {
@@ -620,6 +697,10 @@
             overflow: hidden;
         }
 
+        .light-theme .achievement-card {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
         .achievement-card.unlocked {
             border-color: var(--success);
             background: rgba(16, 185, 129, 0.1);
@@ -645,6 +726,10 @@
             overflow: hidden;
         }
 
+        .light-theme .achievement-progress {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .achievement-progress-bar {
             height: 100%;
             background: var(--primary);
@@ -661,6 +746,10 @@
             border: 1px solid var(--border);
         }
 
+        .light-theme .rating-leaderboard {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
         .leaderboard-item {
             display: flex;
             align-items: center;
@@ -674,6 +763,10 @@
         .leaderboard-item:hover {
             background: rgba(255, 255, 255, 0.05);
             transform: translateX(10px);
+        }
+
+        .light-theme .leaderboard-item:hover {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .leaderboard-item:last-child {
@@ -698,6 +791,10 @@
             border-top: 1px solid var(--border);
             padding: 4rem 2rem 2rem;
             margin-top: 6rem;
+        }
+
+        .light-theme .footer {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .footer-content {
@@ -743,6 +840,27 @@
             color: var(--text-lighter);
         }
 
+        /* Faceit Connect Section */
+        .faceit-connect {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .light-theme .faceit-connect {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .faceit-logo {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #ff5500;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 {
@@ -762,6 +880,8 @@
 
             .nav-center {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .nav-link {
@@ -810,6 +930,41 @@
                 min-width: 120px;
                 padding: 1.5rem;
             }
+
+            .burger-dropdown {
+                position: fixed;
+                top: 80px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .live-stat {
+                min-width: 100px;
+                padding: 1rem;
+            }
+            
+            .live-stat-value {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -847,7 +1002,7 @@
                     <div class="burger-dropdown" id="burgerDropdown">
                         <div class="burger-item" onclick="toggleTheme()">
                             <div class="burger-icon">🌙</div>
-                            Светлая тема
+                            Переключить тему
                         </div>
                         <div class="burger-item" onclick="showPremiumModal()">
                             <div class="burger-icon">⭐</div>
@@ -872,17 +1027,11 @@
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="hero">
-                <h1>Точность в каждом выстреле</h1>
-                <p>Продвинутая аналитика для чемпионов CS2. Стань легендой с помощью искусственного интеллекта и профессиональных инструментов.</p>
+                <h1>m1nkk shot</h1>
+                <p>Лучшая платформа для анализа статистики CS2. Отслеживайте свой прогресс, сравнивайте с другими игроками и улучшайте свои навыки.</p>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="showSection('stats')">
-                        Анализ статистики
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSection('profiles')">
-                        Игровые профили
-                    </button>
-                    <button class="btn btn-premium" onclick="showPremiumModal()">
-                        Премиум доступ
+                    <button class="btn btn-primary" onclick="connectFaceit()">
+                        Привязать Faceit
                     </button>
                 </div>
             </div>
@@ -903,29 +1052,33 @@
                 </div>
             </div>
 
+            <!-- Faceit Connect Section -->
+            <div class="faceit-connect">
+                <div class="faceit-logo">FACEIT</div>
+                <h3 style="margin-bottom: 1.5rem;">Привяжите свой аккаунт Faceit</h3>
+                <p style="color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Получите доступ к расширенной статистике, рейтингу ELO и детальной аналитике ваших матчей на платформе Faceit.
+                </p>
+                <button class="btn btn-primary" onclick="connectFaceit()">
+                    Привязать Faceit аккаунт
+                </button>
+            </div>
+
             <div class="card-grid">
                 <div class="card">
-                    <div class="card-icon">🎯</div>
-                    <h3>Умная аналитика</h3>
-                    <p>Искусственный интеллект анализирует каждый ваш выстрел и дает персональные рекомендации по улучшению навыков</p>
+                    <div class="card-icon">📊</div>
+                    <h3>Детальная статистика</h3>
+                    <p>Полный анализ ваших матчей, K/D ratio, точность стрельбы и другие важные метрики для улучшения игры</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">⚡</div>
-                    <h3>Мгновенные результаты</h3>
-                    <p>Получайте статистику в реальном времени с задержкой менее 1 секунды. Всегда будьте в курсе своего прогресса</p>
+                    <h3>Рейтинг ELO</h3>
+                    <p>Отслеживайте свой прогресс в рейтинговой системе и сравнивайте свои показатели с другими игроками</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🌟</div>
-                    <h3>Элитное сообщество</h3>
-                    <p>Присоединяйтесь к топ-игрокам, участвуйте в эксклюзивных турнирах и получайте признание ваших навыков</p>
-                </div>
-            </div>
-
-            <!-- Achievements Preview -->
-            <div style="margin-top: 4rem;">
-                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--text);">Ваши достижения</h2>
-                <div class="achievements-grid" id="homeAchievements">
-                    <!-- Achievements will be loaded here -->
+                    <div class="card-icon">🏆</div>
+                    <h3>Сравнение с проами</h3>
+                    <p>Анализируйте свою игру в сравнении с профессиональными игроками и узнавайте, где можно улучшиться</p>
                 </div>
             </div>
         </section>
@@ -1126,10 +1279,20 @@
             document.getElementById('burgerDropdown').classList.remove('active');
         }
 
-        // Theme toggle simulation
+        // Theme toggle
         function toggleTheme() {
-            alert('Переключение на светлую тему...');
+            document.body.classList.toggle('light-theme');
             document.getElementById('burgerDropdown').classList.remove('active');
+            
+            // Save theme preference
+            const isLightTheme = document.body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
+        }
+
+        // Faceit connect function
+        function connectFaceit() {
+            alert('Перенаправление на страницу авторизации Faceit...');
+            // In a real implementation, this would redirect to Faceit OAuth
         }
 
         // Stats loading simulation
@@ -1264,6 +1427,15 @@
             animateCounter('onlinePlayers', 12847, 1500);
             animateCounter('matchesPlayed', 3452, 2000);
             animateCounter('tournaments', 47, 1000);
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+            
+            // Start online counter update
+            startOnlineCounter();
         });
 
         function animateCounter(elementId, target, duration) {
@@ -1280,6 +1452,23 @@
                 }
                 element.textContent = Math.floor(current).toLocaleString();
             }, 16);
+        }
+
+        // Online counter update every 13 seconds
+        function startOnlineCounter() {
+            setInterval(() => {
+                const onlineElement = document.getElementById('onlinePlayers');
+                const currentValue = parseInt(onlineElement.textContent.replace(/,/g, ''));
+                
+                // Random change between -500 and +500
+                const change = Math.floor(Math.random() * 1000) - 500;
+                let newValue = currentValue + change;
+                
+                // Ensure value doesn't go below 10000
+                if (newValue < 10000) newValue = 10000;
+                
+                onlineElement.textContent = newValue.toLocaleString();
+            }, 13000); // 13 seconds
         }
     </script>
 </body>
